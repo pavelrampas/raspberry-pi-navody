@@ -1,0 +1,75 @@
+{var $description = 'Základní příkazy v textovém režimu na Raspberry Pi.'}
+{var $title = 'Základní příkazy'}
+
+{var $ogurl = 'zakladni-prikazy'}
+{var $ogpublished = '2014-03-02T10:00:00+00:00'}
+
+{block content}
+<h2>Základní příkazy</h2>
+<p class="article-meta">
+	<strong>02.03.2014</strong>
+</p>
+<p>
+	Protože Raspbian i&nbsp;většina dalších operačních systémů pro Raspberry Pi vychází
+	z&nbsp;různých distribucí Linuxu, je dobré znát pár základních příkazů. Při vytváření seznamu
+	jsem vycházel z&nbsp;toho jaké příkazy běžně používám.
+</p>
+<p><strong>Manuál a&nbsp;nápověda</strong></p>
+<ul>
+	<li><code>$ man příkaz</code> - Vypíše manuál k&nbsp;příkazu.</li>
+	<li><code>$ příkaz --help</code> - Vypíše nápovědu k&nbsp;příkazu, který obsahuje seznam volitelných parametrů.</li>
+</ul>
+<p><strong>Práce s&nbsp;adresáři a&nbsp;soubory</strong></p>
+<ul>
+	<li><code>$ cd</code> - Přechod do domovské adresáře.</li>
+	<li><code>$ cd adresář</code> - Přechod do adresáře.</li>
+	<li><code>$ cd ..</code> - Přechod do nadřazeného adresáře.</li>
+	<li><code>$ pwd</code> - Vypíše cestu k&nbsp;adresáři ve kterém se právě nacházíte.</li>
+	<li><code>$ mkdir adresář</code> - Vytvoří adresář.</li>
+	<li><code>$ rmdir adresář</code> - Smaže prázdný adresář.</li>
+	<li><code>$ ls</code> - Vypíše obsah adresáře.</li>
+	<li><code>$ rm soubor</code> - Smaže soubor.</li>
+	<li><code>$ rm -r adresář</code> - Smaže adresář a&nbsp;všechen jeho obsah.</li>
+	<li><code>$ cp odkud kam</code> - Vytvoří kopii souboru.</li>
+	<li><code>$ mv odkud kam</code> - Přesune soubor. Pokud je umístění stejné, dojde k&nbsp;přejmenování.</li>
+	<li><code>$ unzip soubor.zip</code> - Rozbalení zazipovaného souboru.</li>
+	<li><code>$ tar -zxvf soubor.tar.gz</code> - Rozbalení souboru s&nbsp;uvedenýma koncovkami.</li>
+	<li><code>$ wget url-adresa</code> - Stažení souboru z&nbsp;internetu.</li>
+	<li><code>$ sudo fdisk -l</code> - Informace o připojených discích.</li>
+</ul>
+<p><strong>Informační příkazy a&nbsp;výpisy</strong></p>
+<ul>
+	<li><code>$ vmstat 1 5</code> - Využití systémových prostředků. První číslo udává rychlost opakování výpisu. Druhé číslo počet opakování.</li>
+	<li><code>$ vcgencmd get_config int</code> - Vypíše konfiguraci systému.</li>
+	<li><code>$ vcgencmd measure_temp</code> - Ukáže teplotu.</li>
+	<li><code>$ df -h</code> - Vypíše velikost a&nbsp;obsazení diskových jednotek.</li>
+	<li><code>$ lsusb</code> - Vypíše seznam zařízení připojených do USB.</li>
+	<li><code>$ ifconfig</code> - Výpis nstavení síťových rozhraní.</li>
+	<li><code>$ history</code> - Vypíše historii zadávaných příkazů.</li>
+	<li><code>$ uname -a</code> - Informace o&nbsp;verzi systému.</li>
+	<li><code>$ vypisující-příkaz | less</code> - Použití například s&nbsp;příkazem <code>$ history</code>. Výpis bude stránkovaný aby nám nic neuteklo.</li>
+</ul>
+<p><strong>Spouštění a&nbsp;vypínání</strong></p>
+<ul>
+	<li><code>$ startx</code> - Zapnutí grafického prostředí z&nbsp;textového režimu.</li>
+	<li><code>$ sudo reboot</code> - Restart systému.</li>
+	<li><code>$ sudo shutdown -h now</code> - Vypnutí systému.</li>
+	<li><code>$ java -jar soubor</code> - Spuštění souborů v&nbsp;Javě.</li>
+</ul>
+<p><strong>Správa procesů</strong></p>
+<ul>
+	<li><code>$ ps</code> - Výpis procesů.</li>
+	<li><code>$ ps axu</code> - Výpis procesů. a&nbsp;-&nbsp;všechny procesy, x&nbsp;-&nbsp;rozšířený výpis, u&nbsp;-&nbsp;všech uživatelů</li>
+	<li><code>$ top</code> - Podrobnější, průběžně aktualizovaný výpis. Vypíná se klávesou Q nebo kombinací Ctrl+C.</li>
+	<li><code>$ kill PID</code> - Ukončí požadovaný proces. PID procesu zjistíme ve výpisu procesů.</li>
+	<li><code>$ kill -9 PID</code> - Tvrdší způsob ukončení procesu, když samotné kill nezabírá.</li>
+</ul>
+<p><strong>Instalace a&nbsp;správa balíčků/programů</strong></p>
+<ul>
+	<li><code>$ sudo apt-get update</code> - Aktualizuje seznam balíčků ze zdrojů. Neboli zkontroluje aktualizace.</li>
+	<li><code>$ sudo apt-get upgrade</code> - Aktualizuje všechny nainstalované balíčky/programy.</li>
+	<li><code>$ sudo apt-get install název</code> - Nainstaluje balíček/program.</li>
+	<li><code>$ sudo apt-get remove název</code> - Odstraní balíček/program.</li>
+	<li><code>$ apt-cache search vzor</code> - Vyhledávání v&nbsp;seznamu balíčků.</li>
+	<li><code>$ sudo dpkg -i soubor.deb</code> - Instalace .deb balíčků. Například stažených z&nbsp;internetu.</li>
+</ul>

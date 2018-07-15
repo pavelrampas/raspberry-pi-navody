@@ -1,0 +1,151 @@
+{var $description = 'Zdarma dostupná verze hry Minecraft určená pro Raspberry Pi.'}
+{var $title = 'Minecraft - Pi edition'}
+
+{var $ogurl = 'minecraft-pi-edition'}
+{var $ogpublished = '2014-05-04T10:00:00+00:00'}
+{var $ogimage = 'minecraft-pi-edition/minecraft-pi-edition.png'}
+
+{block content}
+<h2>Minecraft - Pi edition</h2>
+<p class="article-meta">
+	<strong>04.05.2014</strong>
+</p>
+<p>
+	Nejedná se o&nbsp;klasický Minecraft, ale o&nbsp;takovou trochu osekanou variantu Pocket edition.
+	Navíc je ale dostupné API pro Python. Takže je možné si naprogramovat spoustu rozšíření.
+	Právě k&nbsp;tomu je tato verze Minecraftu určena. Je to tedy spíše program pro výuku programování
+	než hra.
+</p>
+<p>
+	<a href="{$basePath}/images/minecraft-pi-edition/minecraft-pi-edition.png">
+		<img src="{$basePath}/images/minecraft-pi-edition/minecraft-pi-edition.png" title="Minecraft - Pi edition" alt="Minecraft - Pi edition" class="img-responsive img-rounded center-block">
+	</a>
+</p>
+<h3>Bloky</h3>
+<p>
+	Seznam bloků není velký a&nbsp;některé bloky se chovají jenom jako bloky. Například
+	TNT nevybuchuje a&nbsp;na cedulky se nedá psát. Rostliny ale rostou normálně.
+</p>
+<p>
+	<a href="{$basePath}/images/minecraft-pi-edition/minecraft-pi-edition-bloky.png">
+		<img src="{$basePath}/images/minecraft-pi-edition/minecraft-pi-edition-bloky.png" title="bloky v Minecraftu - Pi edition" alt="bloky v Minecraftu - Pi edition" class="img-responsive img-rounded center-block">
+	</a>
+</p>
+<h3>Svět</h3>
+<p>
+	Velikost světa je omezená na 256x256 bloků. Nejsou zde žádná zvířátka ani žádná
+	monstra a&nbsp;hra funguje stejně jako creative mod. Takže můžete létat a&nbsp;máte neomezené
+	množství bloků.
+</p>
+<p>
+	<a href="{$basePath}/images/minecraft-pi-edition/minecraft-pi-edition-svet.png">
+		<img src="{$basePath}/images/minecraft-pi-edition/minecraft-pi-edition-svet.png" title="svět v Minecraftu - Pi edition" alt="svět v Minecraftu - Pi edition" class="img-responsive img-rounded center-block">
+	</a>
+</p>
+<h3>Instalace</h3>
+<ol>
+	<li>
+		<p>Přejdeme do domovského adresáře nebo tam kam budeme instalovat.</p>
+		<pre><code>$ cd</code></pre>
+	</li>
+	<li>
+		<p>Stáhneme soubory Minecraftu.</p>
+		<pre><code>$ wget https://s3.amazonaws.com/assets.minecraft.net/pi/minecraft-pi-0.1.1.tar.gz</code></pre>
+	</li>
+	<li>
+		<p>Rozbalíme stažené soubory.</p>
+		<pre><code>$ tar -zxvf minecraft-pi-0.1.1.tar.gz</code></pre>
+	</li>
+	<li>
+		<p>Spustíme Minecraft.</p>
+		<pre><code>$ mcpi/minecraft-pi</code></pre>
+	</li>
+</ol>
+<h3>Rozšíření v&nbsp;Pythonu</h3>
+<h4>První program</h4>
+<ol>
+	<li>
+		<p>Přejdeme do složky kam budeme vytvořené programy ukládat.</p>
+		<pre><code>$ cd
+$ cd mcpi/api/python/</code></pre>
+	</li>
+	<li>
+		<p>Vytvoříme si nový soubor.</p>
+		<pre><code>$ nano prvni-program.py</code></pre>
+	</li>
+	<li>
+		<p>
+			Do souboru napíšeme náš první program. Soubor pak uložíme zkratkou Ctrl+O
+			a&nbsp;zavřeme zkratkou Ctrl+X.
+		</p>
+		<pre><code># Napred pripojime knihovny Minecraftu z&nbsp;adresare mcpi.
+import mcpi.minecraft as minecraft
+import mcpi.block as block
+
+# Vytvorime spojeni s&nbsp;hrou.
+mc = minecraft.Minecraft.create()
+
+# Nasledujici kod vypise text v&nbsp;okne hry.
+mc.postToChat("Nas prvni program pro Minecraft pi Edition")
+
+# Takto vytvorime novy diamantovy blok na souradnicich xyz.
+mc.setBlock(0, 25, 0, block.DIAMOND_BLOCK)</code></pre>
+	</li>
+	<li>
+		<p>
+			Aby jsme mohli náš první program vyzkoušet musíme mít spuštěnou hru
+			a&nbsp;mít vytvořený nějaký svět. V terminálu, kde jsme spouštěli Minecraft si
+			otevřeme novou kartu nebo si otevřeme nový terminál přejdeme do složky
+			s&nbsp;programem a&nbsp;spustíme ho příkazem.
+		</p>
+		<pre><code>$ python prvni-program.py</code></pre>
+	</li>
+</ol>
+<h4>StuffAboutCode</h4>
+<p>
+	Na stránkách <a href="http://www.stuffaboutcode.com/p/minecraft.html">StuffAboutCode.com</a>
+	si můžete přečíst podrobný tutoriál, několik článků se základními postupy a&nbsp;také si tam můžete
+	stáhnout celou řadu hotových projektů jako třeba
+	<a href="http://www.stuffaboutcode.com/2013/02/raspberry-pi-minecraft-analogue-clock.html">obří hodiny</a>
+	nebo hru <a href="http://www.stuffaboutcode.com/2013/03/raspberry-pi-minecraft-snake.html">had</a>.
+</p>
+<p>
+	<a href="{$basePath}/images/minecraft-pi-edition/minecraft-pi-edition-hra-had.png">
+		<img src="{$basePath}/images/minecraft-pi-edition/minecraft-pi-edition-hra-had.png" title="projekt hry had v&nbsp;Minecraftu - Pi edition" alt="projekt hry had v&nbsp;Minecraftu - Pi edition" class="img-responsive img-rounded center-block">
+	</a>
+</p>
+<h3>Screenshoty</h3>
+<p>
+	Na vytvoření screenshotu v&nbsp;tomto případě nefungují běžné nástroje jako Scrot
+	nebo ImageMagick. Použít se dá třeba <a href="https://github.com/AndrewFromMelbourne/raspi2png">raspi2png</a>.
+</p>
+<ol>
+	<li>
+		<p>Přejdeme do domovského adresáře nebo tam kam budeme instalovat.</p>
+		<pre><code>$ cd</code></pre>
+	</li>
+	<li>
+		<p>Stáhneme program raspi2png.</p>
+		<pre><code>$ wget https://github.com/AndrewFromMelbourne/raspi2png/archive/master.zip</code></pre>
+	</li>
+	<li>
+		<p>Rozbalíme stažený soubor.</p>
+		<pre><code>$ unzip master.zip</code></pre>
+	</li>
+	<li>
+		<p>Přejdeme do složky s&nbsp;programem.</p>
+		<pre><code>$ cd raspi2png-master</code></pre>
+	</li>
+	<li>
+		<p>Doinstalujeme libpng12-dev.</p>
+		<pre><code>$ sudo apt-get install libpng12-dev</code></pre>
+	</li>
+	<li>
+		<p>Spustíme příkaz make.</p>
+		<pre><code>$ make</code></pre>
+	</li>
+	<li>
+		<p>Screenshot s&nbsp;názvem <em>snapshot.png</em> pak vytvoříme následujícím příkazem.</p>
+		<pre><code>$ ./raspi2png</code></pre>
+	</li>
+</ol>

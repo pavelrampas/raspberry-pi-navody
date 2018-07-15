@@ -1,0 +1,65 @@
+{var $description = 'Nahrání operačního systému na SD kartu pro použití v Raspberry Pi.'}
+{var $title = 'Příprava SD karty'}
+
+{var $ogurl = 'priprava-sd-karty'}
+{var $ogpublished = '2014-02-23T10:00:00+00:00'}
+{var $ogmodified = '2014-10-19T10:00:00+00:00'}
+{var $ogimage = 'priprava-sd-karty/win32-disk-imager.png'}
+
+{block content}
+<h2>Příprava SD karty</h2>
+<p class="article-meta">
+	<strong>23.02.2014</strong> | Aktualizace: 19.10.2014
+</p>
+<p>
+	Návod jak si připravit SD kartu s&nbsp;operačním systémem pro Raspberry Pi.
+</p>
+<h3>Windows</h3>
+<ol>
+	<li>Napřed si stáhneme požadovaný systém z&nbsp;<a href="http://www.raspberrypi.org/downloads">oficiálních stránek</a>.</li>
+	<li>Soubor bude zabalený v&nbsp;.zip souboru, takže ho rozbalíme abychom dostali soubor s&nbsp;koncovkou .img</li>
+	<li>Vložíme SD kartu do počítače.</li>
+	<li>Pro nahrání systému na SD kartu použijeme program <a href="http://sourceforge.net/projects/win32diskimager/">Win32 Disk Imager</a>. Program je dostupný jako instalační soubor nebo zabalený .zip soubor, který není třeba instalovat. Jenom ho stačí rozbalit. Při spuštění je potřeba povolit spuštění jako administrátor.</li>
+	<li>Když máme program spuštěný. Vybereme stažený .img soubor který chcete na kartu nahrát.</li>
+	<li>Vybereme správné místo označující naši SD kartu kam se má systém uložit. V tomto případě to je disk označený písmenem F. Je třeba dávat pozor, protože před samotným nahráváním systému se vybrané umístění formátuje.</li>
+	<li>Pokud jsme si se vším jistí klikneme na tlačítko Write.</li>
+	<li>Karta je připravena. Můžeme jí vyndat a&nbsp;použít v&nbsp;Raspberry.</li>
+</ol>
+<p>
+	Program Win32 Disk Imager se dá použít i&nbsp;pro zálohu SD karty. Místo staženého .img souboru stačí zadat název souboru, který se má vytvořit a&nbsp;kliknout na tlačítko Read. Velikost souboru pak odpovídá celkové velikosti karty.
+</p>
+<p>
+	<a href="{$basePath}/images/priprava-sd-karty/win32-disk-imager.png">
+		<img src="{$basePath}/images/priprava-sd-karty/win32-disk-imager.png" title="Win32 Disk Imager" alt="Win32 Disk Imager" class="img-responsive img-rounded center-block">
+	</a>
+</p>
+<h3>Linux</h3>
+<p>
+	V grafickém prostředí se dá podle
+	<a href="http://elinux.org/RPi_Easy_SD_Card_Setup#Flashing_the_SD_Card_using_Linux_.28including_on_a_Pi.21.29">RPi_Easy_SD_Card_Setup</a>
+	použít program ImageWriter. Ten ale v&nbsp;nové verzi Ubuntu už není a&nbsp;v jiných distribucích to nejspíš
+	bude podobné. Možnost je si ho <a href="https://launchpad.net/usb-imagewriter">stáhnou</a> a&nbsp;doinstalovat ručně několika příkazy.
+	To už mi ale připadá rychlejší použít pár příkazů pro nahrání systému na SD kartu. Takže.
+<ol>
+	<li>Napřed si stáhneme požadovaný systém z&nbsp;<a href="http://www.raspberrypi.org/downloads">oficiálních stránek</a>.</li>
+	<li>Soubor bude zabalený v&nbsp;.zip souboru, takže ho rozbalíme, buď v&nbsp;grafickém režimu nebo příkazem <code>$ unzip</code> abychom dostali soubor s&nbsp;koncovkou .img</li>
+	<li>
+		Před vložením SD karty použijeme příkaz <code>$ df -h</code> ke zjištění připojených oddílů disků.
+		Stejný příkaz použijeme i&nbsp;po vložení SD karty a&nbsp;tím zjistíme, které oddíly jsou ty nově připojené.
+		Na konci seznamu by jsme měli vidět nějakou z&nbsp;těchto variant <code>/dev/mmcblk0p1</code>,
+		<code>/dev/sdd1</code>, <code>/dev/sdb1</code> nebo něco podobného.
+		V případě, že už jsme nějaký systém na SD kartu nahrávali, budou tam dvě z&nbsp;těchto možností.
+
+	</li>
+	<li>Příkazem <code>$ umount</code> obě nebo jedno oblast SD karty odpojíme. Takže například <code>$ umount /dev/sdb1</code>.</li>
+	<li>
+		Teď už stačí použít příkaz <code>$ sudo dd bs=4M if=~/2014-01-07-wheezy-raspbian.img of=/dev/sdb</code>
+		pro nahrání systému na SD kartu. Je třeba
+		dávat pozor na zadávání, protože cílové místo se zformátuje. Za <code>if</code> následuje cesta
+		k&nbsp;.img souboru. Za <code>of</code> uvádíme oblast kterou jsme odpojili, ale bez koncového čísla,
+		protože chceme nahrávat na celou kartu, ne jenom na jednu část.
+	</li>
+	<li>Nakonec by se měl ještě použít příkaz <code>$ sudo sync</code>.</li>
+	<li>Karta je připravena. Můžeme jí vyndat a&nbsp;použít v&nbsp;Raspberry Pi.</li>
+</ol>
+</p>

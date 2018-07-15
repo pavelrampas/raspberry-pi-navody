@@ -1,0 +1,118 @@
+{var $description = 'Nastavení rozlišení obrazu a dalších parametrů na počítači Raspberry Pi.'}
+{var $title = 'Nastavení obrazu'}
+
+{var $ogurl = 'nastaveni-obrazu'}
+{var $ogpublished = '2014-03-16T10:00:00+00:00'}
+
+{block content}
+<h2>Nastavení obrazu</h2>
+<p class="article-meta">
+	<strong>16.03.2014</strong>
+</p>
+<p>
+	Raspberry Pi si většinou zjistí optimální nastavení přímo z&nbsp;připojeného zařízení.
+	Někdy je ale potřeba nastavit některé věci ručně. Často například v&nbsp;případě připojení
+	monitoru přes VGA.
+</p>
+<p>
+	Obvyklým problémem, který jsem měl i&nbsp;já, je že monitor po zapnutí zůstane černý
+	nebo se rozběhne se špatným rozlišením. Hlavně v&nbsp;případě zapnutí monitoru současně
+	s&nbsp;Raspberry Pi nebo později.
+</p>
+<p>
+	První jednoduché řešení v&nbsp;mém případě bylo zapínat jako první monitor, počkat až
+	naběhne a&nbsp;pak teprve zapnout Raspberry Pi. To je ovšem zdlouhavý, takže jsem hledal
+	další možnosti.
+</p>
+<p>
+	Jako řešení se ukázalo nastavit rozlišení a&nbsp;další vlastnosti ručně v&nbsp;souboru
+	<b>/boot/config.txt</b> o&nbsp;kterém se můžete podrobnosti dočíst na
+	<a href="http://elinux.org/RPiconfig">RPiconfig</a>.
+</p>
+<h3>Nastavení rozlišení</h3>
+<ol>
+	<li>
+		<p>
+			Napřed si zjistíme optimální nastavení našeho monitoru. Můžeme ho také najít
+			třeba v&nbsp;papírovém manuálu.
+		</p>
+		<pre><code>$ /opt/vc/bin/tvservice -m DMT</code></pre>
+		<p>
+			<a href="{$basePath}/images/nastaveni-obrazu/tvservice.png">
+				<img src="{$basePath}/images/nastaveni-obrazu/tvservice.png" title="tvservice" alt="tvservice" class="img-responsive img-rounded center-block">
+			</a>
+		</p>
+		<br>
+		<p>
+			Důležité je číslo preferovaného nastavení. Toto číslo se dá také zjistit
+			v&nbsp;tabulce na <a href="http://elinux.org/RPiconfig">RPiconfig</a>.
+		</p>
+	</li>
+	<li>
+		<p>
+			Otevřeme soubor <b>/boot/config.txt</b> pro editaci.
+		</p>
+		<pre><code>$ sudo nano /boot/config.txt</code></pre>
+	</li>
+	<li>
+		<p>
+			Upravíme hodnoty v&nbsp;souboru. Některé nastavení stačí jenom
+			odkomentovat (smazat mřížku na začátku řádku) a&nbsp;některá je třeba dopsat.
+		</p>
+		<pre><code>hdmi_force_hotplug=1		(Zapne posílání dat přes HDMI i&nbsp;když není detekován monitor.)
+hdmi_ignore_edid=0xa5000080 (Vypne získávánní nastavení z&nbsp;monitoru.)
+hdmi_group=2				(Přepne na formát DMT.)
+hdmi_mode=47				(Číslo rozlišení, které jsme získali v&nbsp;předešlém kroku.)</code></pre>
+	</li>
+	<li>
+		<p>
+			Restartujeme Raspberry Pi
+		</p>
+		<pre><code>$ sudo reboot</code></pre>
+	</li>
+</ol>
+<h3>Další nastavení</h3>
+<p>
+	V případě nějakých dalších problému je zde několik nastavení, které se můžou hodit.
+</p>
+<ol>
+	<li>
+		<p>
+			Síla HDMI signálu. Výchozí hodnota je 0 maximum pak 7. V případě, že
+			se objevují chyby v&nbsp;obraze doporučuje se zkusit hodnotu 4.
+		</p>
+		<pre><code>config_hdmi_boost=4</code></pre>
+	</li>
+	<li>
+		<p>
+			Přepíná mezi HDMI modem se zvukem a&nbsp;DVI modem bez zvuku. HDMI=2, DVI=1.
+		</p>
+		<pre><code>hdmi_drive=2</code></pre>
+	</li>
+	<li>
+		<p>
+			S hodnotou 1 vypne okraje. S hodnotou 0 zapne okraje.
+		</p>
+		<pre><code>disable_overscan=1</code></pre>
+	</li>
+	<li>
+		<p>
+			Nastavení černých okrajů pro jednotlivé strany, kdyby obraz vyčníval mimo.
+		</p>
+		<pre><code>overscan_left=16
+overscan_right=16
+overscan_top=16
+overscan_bottom=16</code></pre>
+	</li>
+	<li>
+		<p>
+			Otáčení a&nbsp;převracení obrazu.
+		</p>
+		<pre><code>display_rotate=0	   (Normální)
+display_rotate=1	   (90°)
+display_rotate=2	   (180°)
+display_rotate=3	   (270°)
+display_rotate=0x10000 (horizontální převracení)
+display_rotate=0x20000 (vertikální převrácení)</code></pre>
+	</li>
+</ol>

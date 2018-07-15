@@ -1,0 +1,66 @@
+{var $description = 'Napájení Raspberry Pi pomocí adaptéru a USB hubu.'}
+{var $title = 'Napájení'}
+
+{var $ogurl = 'napajeni'}
+{var $ogpublished = '2014-02-23T10:00:00+00:00'}
+{var $ogimage = 'napajeni/napajeni-raspberry-pi.jpg'}
+
+{block content}
+<h2>Napájení</h2>
+<p class="article-meta">
+	<strong>23.02.2014</strong>
+</p>
+<p>
+	Raspberry Pi můžeme napájet mnoha způsoby. Základem je síťový adaptér nebo nabíječka k&nbsp;mobilu.
+	Lze využít i&nbsp;USB hub případně USB na notebooku nebo i&nbsp;na televizi.
+	Jako přenosné zdroje se dají použít <a href="http://www.czc.cz/prenosne-power-banky/produkty">Power banky</a> nebo lze vyrobit
+	<a href="http://www.raspberrypi-spy.co.uk/2013/02/running-a-raspberry-pi-from-6-aa-batteries/">zdroj z&nbsp;tužkových baterií</a>.
+	Použít se dají i&nbsp;malé
+	<a href="http://www.imthi.com/blog/electronics/raspberry-pi-with-redundant-power-supply.php">solární panely s&nbsp;baterií</a>.
+</p>
+<p>
+	Raspberry Pi požaduje 5&nbsp;V a&nbsp;700-1000&nbsp;mA. Doporučený zdroj je právě 5&nbsp;V a&nbsp;1&nbsp;A.
+	Vystačí si ale i&nbsp;menšími hodnotami. Běžné USB na počítači nebo USB hubu má pouze 500&nbsp;mA a&nbsp;stačí
+	to i&nbsp;když Raspberry Pi nemusí být úplně stabilní.
+	<a href="http://elinux.org/RPi_Hardware#Power_Supply_Problems">Problémy s&nbsp;napájením</a> se dají zjišťovat pomocí dvou bodů
+	na Raspbery Pi označených jako TP1 a&nbsp;TP2. Na těchto bodech se dá pomocí multimetru měřit napětí.
+	Optimálně by se napětí mělo pohybovat od 4,75&nbsp;V do 5,25&nbsp;V. Jaké jsou hodnoty při napájení z&nbsp;adaptéru
+	a&nbsp;jaké jsou pří napájení z&nbsp;USB hubu jsem si ověřil testem. Jako adaptér jsem použil
+	<a href="http://www.czc.cz/goobay-nabijecka-s-konektorem-micro-usb/91930/produkt">Goobay nabíječku</a>. USB hub jsem použil
+	<a href="http://www.czc.cz/d-link-hi-speed-usb-2-0-7-port-hub/21504/produkt">D-Link Hi-Speed USB 2.0 7-Port Hub (DUB-H7)</a>.
+	V obou případech byl k&nbsp;Raspberry Pi připojen monitor a&nbsp;USB hub.
+</p>
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th></th>
+			<th>Napětí:</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Adaptér</td>
+			<td>4,87&nbsp;V – 4,94&nbsp;V</td>
+		</tr>
+		<tr>
+			<td>USB hub</td>
+			<td>4,38&nbsp;V – 4,50&nbsp;V</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	Jak je vidět hodnoty s&nbsp;adaptérem se vejdou do rozmezí. S USB hubem to bylo horší,
+	přesto Raspberry Pi fungovalo bez problémů. Zkoušel jsem i&nbsp;zvýšit frekvenci procesoru,
+	ale s&nbsp;hodnotami to nic nedělalo. V případě nízkého napětí se může občas objevovat šum v&nbsp;reproduktorech, který
+	se dá brát jako první signál toho, že něco není v&nbsp;pořádku.
+	Je také zapotřebí používat kvalitní kabel aby nedocházelo k&nbsp;velkým ztrátám.
+</p>
+<p>
+	Na fotografii je vidět, kde se přibliže nacházejí oba body určené k&nbsp;měření.
+	Naměřené napětí 5,10&nbsp;V na displeji je způsobené tím, že k&nbsp;Raspberry Pi není nic připojeno.
+</p>
+<p>
+	<a href="{$basePath}/images/napajeni/napajeni-raspberry-pi.jpg">
+		<img src="{$basePath}/images/napajeni/napajeni-raspberry-pi.jpg" title="napájení Raspberry Pi" alt="napájení Raspberry Pi" class="img-responsive img-rounded">
+	</a>
+</p>

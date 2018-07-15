@@ -1,0 +1,87 @@
+{var $description = 'Odstranění oblastní z SD karty po použití v počítači Raspberry Pi.'}
+{var $title = 'Obnovení SD karty'}
+
+{var $ogurl = 'obnoveni-sd-karty'}
+{var $ogpublished = '2014-03-02T10:00:00+00:00'}
+{var $ogimage = 'obnoveni-sd-karty/gparted-2.png'}
+
+{block content}
+<h2>Obnovení SD karty</h2>
+<p class="article-meta">
+	<strong>02.03.2014</strong>
+</p>
+<p>
+	Pokud na SD kartu nahrajete nějaký operační systém pro Raspberry Pi. Rozdělí se SD karta
+	na dva oddíly. Co tedy dělat, když chcete vrátit SD kartu do původního stavu aby
+	jí bylo možné použít v&nbsp;jiných zařízeních.
+</p>
+<h3>Windows</h3>
+<p>
+	Ve Windows si můžete nainstalovat nějaký grafický program pro správu disků a&nbsp;oblastí.
+	Existuje jich spoustu. Mě se ale nechtělo nic hledat a&nbsp;instalovat, tak jsem použil
+	textový program DISKPART obsažený ve Windows&nbsp;7.
+</p>
+<ol>
+	<li>
+		Diskpart spustíme z&nbsp;příkazové řádky. Tu najdeme pod tlačítkem Start v&nbsp;Příslušenství nebo
+		otevřeme Start&nbsp;>&nbsp;Spustit a&nbsp;zadáme "cmd". Když máme otevřenou příkazovou řádku
+		napíšeme <code>diskpart</code> a&nbsp;potvrdíme. Tím se nám program Diskpart spustí v&nbsp;novém
+		samostatném okně a&nbsp;můžeme zadávat příkazy.
+	</li>
+	<li><code>list disk</code> - Vypíše seznam připojených disků.</li>
+	<li><code>select disk "číslo disku"</code> - Vybere disk, který označuje naší SD kartu.</li>
+	<li>
+		<code>list part</code> - Vypíše seznam oblastí na SD kartě.
+		<br><br>
+		<a href="{$basePath}/images/obnoveni-sd-karty/diskpart-1.png">
+			<img src="{$basePath}/images/obnoveni-sd-karty/diskpart-1.png" title="diskpart" alt="diskpart" class="img-responsive img-rounded center-block">
+		</a>
+		<br>
+	</li>
+	<li><code>select part "číslo oblasti"</code> - Vybereme jednu z&nbsp;oblastí.</li>
+	<li><code>delete part</code> - Odstraníme oblast.</li>
+	<li><code>list part</code> - Vypíšeme si znova seznam oblastí. Už by měla být jenom jedna.</li>
+	<li><code>select part "číslo oblasti"</code> - Vybereme zbývající oblast.</li>
+	<li><code>delete part</code> - Odstraníme oblast.</li>
+	<li><code>list part</code> - Znova výpis oblastí. Už by tam neměla být žádná.</li>
+	<li><code>create part pri</code> - Vytvoříme jednu novou oblast.</li>
+	<li>
+		<code>list part</code> - Zkontrolujeme jestli opravdu existuje jedna oblast a&nbsp;je hotovo.
+		<br><br>
+		<a href="{$basePath}/images/obnoveni-sd-karty/diskpart-2.png">
+			<img src="{$basePath}/images/obnoveni-sd-karty/diskpart-2.png" title="diskpart" alt="diskpart" class="img-responsive img-rounded center-block">
+		</a>
+		<br>
+	</li>
+	<li><code>exit</code> - Zavřeme Diskpart.</li>
+	<li>V Průzkumníku bude zapotřebí provést formát karty. Žádost o&nbsp;formát pravděpodobně sama vyskočí, když se pokusíme SD kartu otevřít.</li>
+</ol>
+<h3>Linux</h3>
+<p>
+	V Linuxu mi zase přišlo snažší nainstalovat si grafický program GParted. Nainstalovat si
+	ho můžete příkazem <code>$ sudo apt-get install gparted</code> a&nbsp;pokud nenajdete ikonu
+	spustíte ho příkazem <code>$ sudo gparted</code>.
+</p>
+<ol>
+	<li>V pravém horním rohu si vybereme z&nbsp;nabýtky naši SD kartu.</li>
+	<li>
+		Oblasti u&nbsp;kterých je vidět obrázek klíče je potřeba odpojit. Klikneme na požadovaný
+		řádek pravým tlačítkem a&nbsp;vybereme možnost odpojit.
+	</li>
+	<li>
+		Smažeme obě oblasti.
+		<br><br>
+		<a href="{$basePath}/images/obnoveni-sd-karty/gparted-1.png">
+			<img src="{$basePath}/images/obnoveni-sd-karty/gparted-1.png" title="gparted" alt="gparted" class="img-responsive img-rounded center-block">
+		</a>
+		<br>
+	</li>
+	<li>Tlačítkem Nový vytvoříme novou oblast. Při vytváření zvolíme souborový systém fat32.
+		<br><br>
+		<a href="{$basePath}/images/obnoveni-sd-karty/gparted-2.png">
+			<img src="{$basePath}/images/obnoveni-sd-karty/gparted-2.png" title="gparted" alt="gparted" class="img-responsive img-rounded center-block">
+		</a>
+		<br>
+	</li>
+	<li>Všechny změny, které jsme provedli musíme nakonec potvrdit tlačítkem Použít. Najdete pod obrázkem zelené fajfky (zatržítka).</li>
+</ol>

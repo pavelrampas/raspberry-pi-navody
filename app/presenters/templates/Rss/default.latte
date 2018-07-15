@@ -1,0 +1,27 @@
+{extends none}
+{contentType application/xml}
+<?xml version="1.0" encoding="utf-8"?>
+<rss xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:sy="http://purl.org/rss/1.0/modules/syndication/" version="2.0">
+	<channel>
+		<title>Raspberry Pi návody</title>
+		<atom:link href="https://raspberry.pavelrampas.cz/rss.xml" rel="self" type="application/rss+xml"/>
+		<link>https://raspberry.pavelrampas.cz</link>
+		<description>Návody a rady pro malý, jednodeskový počítač Raspberry Pi.</description>
+		{foreach $posts as $post}
+			{first}<lastBuildDate>{$date|date:'D, d M Y H:i:s'} +0100</lastBuildDate>{/first}
+		{/foreach}
+		<language>cs-CZ</language>
+		<sy:updatePeriod>daily</sy:updatePeriod>
+		<sy:updateFrequency>1</sy:updateFrequency>
+		{foreach $posts as $post}
+			<item>
+				<title>{$post->title|striptags|noescape|replace:'&nbsp;',' '}</title>
+				<link>{link //News:default $post->id}-{$post->title|webalize}</link>
+				<pubDate>{$post->date|date:'D, d M Y H:i:s'} +0100</pubDate>
+				<dc:creator><![CDATA[ Pavel Rampas ]]></dc:creator>
+				<description><![CDATA[ {$post->content|truncate:200|striptags|noescape|replace:'&nbsp;',' '} ]]></description>
+				<content:encoded><![CDATA[ {$post->content|noescape} ]]></content:encoded>
+			</item>
+		{/foreach}
+	</channel>
+</rss>

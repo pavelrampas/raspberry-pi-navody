@@ -1,0 +1,76 @@
+{var $description = 'Nastavení zvuku a ovládání hlasitosti na Raspberry Pi.'}
+{var $title = 'Nastavení zvuku'}
+
+{var $ogurl = 'nastaveni-zvuku'}
+{var $ogpublished = '2014-03-16T10:00:00+00:00'}
+{var $ogimage = 'nastaveni-zvuku/alsamixer.png'}
+
+{block content}
+<h2>Nastavení zvuku</h2>
+<p class="article-meta">
+	<strong>16.03.2014</strong>
+</p>
+<p>
+	Z nějakého důvodu nefunguje ovládání hlasitosti v&nbsp;grafickém režimu, takže je
+	potřeba nastavovat hlasitost pomocí příkazů.
+</p>
+<h3>amixer</h3>
+<ol>
+	<li>
+		<p>
+			Napřed si vypíšeme seznam toho co můžeme ovládat. Nejvíc nás bude
+			zajímat řádka ve které je uvedeno <b>PCM Playback Volume</b>.
+		</p>
+		<pre><code>$ amixer controls</code></pre>
+		<p>
+			<a href="{$basePath}/images/nastaveni-zvuku/amixer-controls.png">
+				<img src="{$basePath}/images/nastaveni-zvuku/amixer-controls.png" title="amixer controls" alt="amixer controls" class="img-responsive img-rounded center-block">
+			</a>
+		</p>
+		<br>
+	</li>
+	<li>
+		<p>
+			Vezmeme <b>numid</b> z&nbsp;předchozího kroku a&nbsp;vypíšeme si nastavení.
+			Ve výpisu vidíme maximální a&nbsp;minimální hodnoty hlasitosti a&nbsp;v předposlední
+			řádce začínající slovem <b>values</b> je aktuální hodnota.
+		</p>
+		<pre><code>$ amixer cget numid=1</code></pre>
+		<p>
+			<a href="{$basePath}/images/nastaveni-zvuku/amixer-cget.png">
+				<img src="{$basePath}/images/nastaveni-zvuku/amixer-cget.png" title="amixer controls" alt="amixer controls" class="img-responsive img-rounded center-block">
+			</a>
+		</p>
+		<br>
+	</li>
+	<li>
+		<p>
+			Hlasitost můžeme změnit dvěma způsoby. První varianta je zadat přímo číslo
+			z&nbsp;rozsahu hlasitosti.
+		</p>
+		<pre><code>$ amixer cset numid=1 -- -650</code></pre>
+		<p>
+			Druhou variantu je použít procenta.
+		</p>
+		<pre><code>$ amixer cset numid=1 90%</code></pre>
+	</li>
+</ol>
+<h3>alsamixer</h3>
+<p>
+	Další možností je ovládat hlasitost pomocí <b>alsamixer</b>. Zde se dá
+	nastavit hlasitost šipkami.
+</p>
+<pre><code>$ alsamixer</code></pre>
+<p>
+	<a href="{$basePath}/images/nastaveni-zvuku/alsamixer.png">
+		<img src="{$basePath}/images/nastaveni-zvuku/alsamixer.png" title="alsamixer" alt="alsamixer" class="img-responsive img-rounded center-block">
+	</a>
+</p>
+<br>
+<h3>reset</h3>
+<p>
+	Resetovat nastavení zvuku lze příkazem.
+</p>
+<pre><code>$ sudo /etc/init.d/alsa-utils reset</code></pre>
+<br>
+<br>

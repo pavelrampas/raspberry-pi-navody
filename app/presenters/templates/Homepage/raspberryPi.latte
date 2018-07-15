@@ -1,0 +1,151 @@
+{var $description = 'Základní popis jednodeskového počítače Raspberry Pi. Vstupy, výstupy, rozměry a další.'}
+{var $title = 'Raspberry Pi'}
+
+{var $ogurl = 'raspberry-pi'}
+{var $ogpublished = '2014-02-23T10:00:00+00:00'}
+{var $ogmodified = '2015-04-20T10:00:00+00:00'}
+{var $ogimage = 'raspberry-pi/raspberry-pi-2.jpg'}
+
+{block content}
+<h2>Raspberry Pi</h2>
+<p class="article-meta">
+	<strong>23.02.2014</strong> | Aktualizace: 20.04.2015 | <abbr title="Pro jaké verze Raspberry Pi je tento článek.">Zařízení</abbr>: <abbr title="Raspberry Pi 1 model B revize 2.0">RPi 1 B</abbr> a&nbsp;<abbr title="Raspberry Pi 2 model B">RPi 2 B</abbr>
+</p>
+<p>
+	Raspberry Pi je jednodeskový počítač vyvíjený britskou nadací Raspberry Pi Foundantion
+	a&nbsp;jeho hlavním cílem je zlepšit výuku programování ve školách. Kromě škol se ale
+	tento malý počítač rozšířil díky své ceně i do domácností a v listopadu 2013
+	bylo oznámeno 2 000 000 prodaných kusů. V současnosti se Raspberry Pi vyrábí
+	v&nbsp;<a href="http://www.raspberrypi.org/products/">několika variantách</a>. Nejnovější verze
+	byla ohlášena 2. února 2015. Parametry dvou verzí které mám doma jsem popsal
+	v&nbsp;následujících tabulkách. Další informace pak najdete na
+	oficiálních stránkách <a href="http://www.raspberrypi.org/faqs">Raspberry Pi</a>
+	nebo <a href="http://elinux.org/RPi_Hub">Raspberry Pi Wiki</a>.
+</p>
+<br>
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th colspan="2">Raspberry Pi 1 model B revize 2.0</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><abbr title="system-on-chip">SoC</abbr>:</td>
+			<td>Broadcom BCM2835 (CPU, GPU, DSP, SDRAM, jeden USB port)</td>
+		</tr>
+		<tr>
+			<td>CPU:</td>
+			<td>jednojádrový 700&nbsp;MHz ARM1176JZF-S (ARM11)</td>
+		</tr>
+		<tr>
+			<td>GPU:</td>
+			<td>Broadcom VideoCore IV<br>OpenGL ES 2.0, 1080p30 H.264/MPEG-4 AVC<br>MPEG-2 a&nbsp;VC-1 (při <a href="http://www.raspberrypi.com/">zakoupení licence</a>)</td>
+		</tr>
+		<tr>
+			<td>Paměť (SDRAM):</td>
+			<td>512&nbsp;MB sdílená s&nbsp;GPU</td>
+		</tr>
+		<tr>
+			<td>USB 2.0:</td>
+			<td>2×</td>
+		</tr>
+		<tr>
+			<td>Video výstup:</td>
+			<td>HDMI, kompozitní video (cinch), DSI</td>
+		</tr>
+		<tr>
+			<td>Zvukový výstup:</td>
+			<td>3,5&nbsp;mm jack, HDMI</td>
+		</tr>
+		<tr>
+			<td>Úložiště:</td>
+			<td>SD/MMC/SDIO slot na kartu</td>
+		</tr>
+		<tr>
+			<td>Síťové rozhraní:</td>
+			<td>10/100 Ethernet RJ45</td>
+		</tr>
+		<tr>
+			<td>Napájení:</td>
+			<td>MicroUSB 5&nbsp;V / 700-1000&nbsp;mA (záleží na připojených periferiích)</td>
+		</tr>
+		<tr>
+			<td>Rozměry:</td>
+			<td>85,60&nbsp;mm × 56&nbsp;mm × 21&nbsp;mm </td>
+		</tr>
+		<tr>
+			<td>Hmotnost:</td>
+			<td>45&nbsp;g</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	<a href="{$basePath}/images/raspberry-pi/raspberry-pi.jpg">
+		<img src="{$basePath}/images/raspberry-pi/raspberry-pi.jpg" title="Raspberry Pi" alt="Raspberry Pi" class="img-responsive img-rounded">
+	</a>
+</p>
+<br>
+<br>
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th colspan="2">Raspberry Pi 2 model B</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><abbr title="system-on-chip">SoC</abbr>:</td>
+			<td>Broadcom BCM2836 (CPU, GPU, DSP, SDRAM, jeden USB port)</td>
+		</tr>
+		<tr>
+			<td>CPU:</td>
+			<td>čtyřjádrový 900 MHz ARM Cortex-A7</td>
+		</tr>
+		<tr>
+			<td>GPU:</td>
+			<td>Broadcom VideoCore IV<br>OpenGL ES 2.0, 1080p30 H.264/MPEG-4 AVC<br>MPEG-2 a&nbsp;VC-1 (při <a href="http://www.raspberrypi.com/">zakoupení licence</a>)</td>
+		</tr>
+		<tr>
+			<td>Paměť (SDRAM):</td>
+			<td>1024&nbsp;MB sdílená s&nbsp;GPU</td>
+		</tr>
+		<tr>
+			<td>USB 2.0:</td>
+			<td>4×</td>
+		</tr>
+		<tr>
+			<td>Video výstup:</td>
+			<td>HDMI, kompozitní video (3,5&nbsp;mm jack), DSI</td>
+		</tr>
+		<tr>
+			<td>Zvukový výstup:</td>
+			<td>3,5&nbsp;mm jack, HDMI</td>
+		</tr>
+		<tr>
+			<td>Úložiště:</td>
+			<td>MicroSD slot na kartu</td>
+		</tr>
+		<tr>
+			<td>Síťové rozhraní:</td>
+			<td>10/100 Ethernet RJ45</td>
+		</tr>
+		<tr>
+			<td>Napájení:</td>
+			<td>MicroUSB 5&nbsp;V / 800-2000&nbsp;mA (záleží na připojených periferiích)</td>
+		</tr>
+		<tr>
+			<td>Rozměry:</td>
+			<td>85,60&nbsp;mm × 56&nbsp;mm × 21&nbsp;mm </td>
+		</tr>
+		<tr>
+			<td>Hmotnost:</td>
+			<td>45&nbsp;g</td>
+		</tr>
+	</tbody>
+</table>
+<p>
+	<a href="{$basePath}/images/raspberry-pi/raspberry-pi-2.jpg">
+		<img src="{$basePath}/images/raspberry-pi/raspberry-pi-2.jpg" title="Raspberry Pi 2" alt="Raspberry Pi 2" class="img-responsive img-rounded">
+	</a>
+</p>

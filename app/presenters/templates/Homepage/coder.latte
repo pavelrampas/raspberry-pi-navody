@@ -1,0 +1,130 @@
+{var $description = 'Coder umožňuje vytvářet malé projekty v HTML, CSS a JavaScriptu na počítači Raspberry Pi.'}
+{var $title = 'Coder'}
+
+{var $ogurl = 'coder'}
+{var $ogpublished = '2014-04-06T10:00:00+00:00'}
+{var $ogimage = 'coder/coder-space-rocks.png'}
+
+{block content}
+<h2>Coder</h2>
+<p class="article-meta">
+	<strong>06.04.2014</strong>
+</p>
+<p>
+	Tento projekt postavený na Raspbianu je zaměřený na výuku webových technologií
+	HTML, CSS a&nbsp;JavaScriptu. Coder je něco jako <a href="http://jsfiddle.net/">JSFIDDLE</a>
+	a&nbsp;podobné online aplikace. Navíc ale přináší možnost používání obrázků a&nbsp;zvuků
+	a&nbsp;hlavně <a href="http://nodejs.org/">Node.js</a>, tedy JavaSript na serveru,
+	který v&nbsp;tomto případě představuje Raspberry Pi.
+</p>
+<h3>Instalace</h3>
+<p>
+	Coder se instaluje stejně jako jiné operační systémy.
+	Na <a href="http://googlecreativelab.github.io/coder/">stránce projektu</a> si
+	stáhneme obraz a&nbsp;pokračujeme podle návodu v&nbsp;kapitole
+	<a href="{link Homepage:priprava-sd-karty}">Příprava SD karty</a>.
+</p>
+<p>
+	Dál je potřeba mít Raspberry Pi zapojené do sítě aby jsme k&nbsp;němu mohli přistupovat
+	z&nbsp;počítače. Nastavení sítě najdete v&nbsp;kapitolách <a href="{link Homepage:wi-fi}">Wi-Fi</a>
+	a&nbsp;<a href="{link Homepage:ethernet}">Ethernet</a>. V případě, že používáte Windows
+	budete si muset nainstalovat program
+	<a href="http://support.apple.com/kb/DL999">Bonjour Print Services for Windows</a>.
+</p>
+<p>
+	Pak už stačí otevřít prohlížeč a&nbsp;zadat adresu <code>http://coder.local/</code>.
+	Prohlížeč Vás bude varovat před certifikátem, ale můžete klidně pokračovat.
+</p>
+<p>
+	<a href="{$basePath}/images/coder/coder-chyba-ssl.png">
+		<img src="{$basePath}/images/coder/coder-chyba-ssl.png" title="Coder chyba SSL" alt="Coder chyba SSL" class="img-responsive img-rounded center-block">
+	</a>
+</p>
+<br>
+<p>
+	Zobrazí se vám stránka, kde budete muset napřed zadat dvakrát nové heslo. Potom
+	už se dostanete na přihlašovací stránku, kde se můžete přihlásit heslem,
+	které jste si právě vytvořili.
+</p>
+<p>
+	<a href="{$basePath}/images/coder/coder-prihlaseni.png">
+		<img src="{$basePath}/images/coder/coder-prihlaseni.png" title="Coder přihlášení" alt="Coder přihlášení" class="img-responsive img-rounded center-block">
+	</a>
+</p>
+<h3>Popis prostředí</h3>
+<p>
+	Po přihlášení se otevře hlavní stránka se seznamem vytvořených projektů. Po
+	instalaci už jsou připravené tři projekty a&nbsp;jeden z&nbsp;nich je hra Space Rocks!.
+</p>
+<p>
+	<a href="{$basePath}/images/coder/coder.png">
+		<img src="{$basePath}/images/coder/coder.png" title="Coder" alt="Coder" class="img-responsive img-rounded center-block">
+	</a>
+</p>
+<br>
+<p>
+	Kliknutím na tlačítko v&nbsp;pravém horním rohu. Na kterém je lomítko mezi špičatými
+	závorkami se dostaneme do úpravy kódu projektu.
+</p>
+<p>
+	<a href="{$basePath}/images/coder/coder-space-rocks.png">
+		<img src="{$basePath}/images/coder/coder-space-rocks.png" title="Coder Space Rocks!" alt="Coder Space Rocks!" class="img-responsive img-rounded center-block">
+	</a>
+</p>
+<br>
+<p>
+	Upravovat můžeme HTML, CSS, JavaScript a&nbsp;Node.js. Dalšími třemi ikonami se dají
+	nahrávat obrázky a&nbsp;zvuky nebo lze zobrazit výsledek vedle kódu.
+</p>
+<p>
+	<a href="{$basePath}/images/coder/coder-space-rocks-kod.png">
+		<img src="{$basePath}/images/coder/coder-space-rocks-kod.png" title="interfaces" alt="interfaces" class="img-responsive img-rounded center-block">
+	</a>
+</p>
+<h3>Import projektů</h3>
+<p>
+	Pro lepší sdílení projektů je možné projekty ukládat do zip souborů a&nbsp;tyto soubory
+	pak nahrát. Na <a href="http://googlecreativelab.github.io/coder-projects/">stránkách s&nbsp;projekty</a>
+	je možné si několik již hotových výtvorů stáhnout. Při vytváření nového projektu
+	pak stačí kliknout na ikonu se šipkou a vybrat stažený projekt.
+</p>
+<p>
+	<a href="{$basePath}/images/coder/coder-novy-projekt.png">
+		<img src="{$basePath}/images/coder/coder-novy-projekt.png" title="Coder nový projekt" alt="Coder nový projekt" class="img-responsive img-rounded center-block">
+	</a>
+</p>
+<br>
+<p>
+	Pokud vám při vkládání staženého projektu vyskočí tato chyba, je třeba udělat
+	malou úpravu v&nbsp;jednom souboru Coderu.
+</p>
+<p>
+	<a href="{$basePath}/images/coder/coder-import-chyba.png">
+		<img src="{$basePath}/images/coder/coder-import-chyba.png" title="Coder chyba importu" alt="Coder chyba importu" class="img-responsive img-rounded center-block">
+	</a>
+</p>
+<br>
+<ol>
+	<li>
+		<p>Otevřeme si soubor <code>index.js</code>.</p>
+		<pre><code>$ nano /home/coder/coder-dist/coder-base/static/apps/coder/js/index.js</code></pre>
+	</li>
+	<li>
+		<p>Pouřijeme zkratku <code>Ctrl+W</code> pro vyhledání slova <code>zip</code> v&nbsp;souboru.</p>
+	</li>
+	<li>
+		<p>Zakomentujeme tyto řádky tím, že před ně napíšeme dvě lomítka.</p>
+		<pre><code>//if (!importfile.type.match('application/zip')) {
+//	alert('This doesn\'t appear to be a&nbsp;Coder project zip file');
+//	return false;
+//}</code></pre>
+	</li>
+	<li>
+		<p>Uložíme soubor zkratkou <code>Ctrl+O</code> a&nbsp;zavřeme zkratkou <code>Ctrl+X</code>.</p>
+		<p>
+			<a href="{$basePath}/images/coder/coder-import-chyba-oprava.png">
+				<img src="{$basePath}/images/coder/coder-import-chyba-oprava.png" title="Coder oprava chyby importu" alt="Coder oprava chyby importu" class="img-responsive img-rounded center-block">
+			</a>
+		</p>
+	</li>
+</ol>

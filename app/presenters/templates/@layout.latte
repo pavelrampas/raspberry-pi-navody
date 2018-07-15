@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="cs">
+	<head>
+		<meta charset="utf-8">
+		<meta name="description" content="{$description}" n:ifset="$description">
+		<meta name="author" content="Pavel Rampas">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="apple-touch-icon" href="apple-touch-icon.png">
+		<link rel="icon" type="image/png" sizes="192x192" href="favicon-192x192.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="favicon-96x96.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="favicon.png">
+		<meta property="og:site_name" content="Raspberry Pi návody">
+		<meta property="og:title" content="{$title|noescape}">
+		<meta property="og:locale" content="cs_CZ">
+		<meta property="og:type" content="article">
+		<meta property="og:url" content="https://raspberry.pavelrampas.cz/{ifset $news}novinky/{/ifset}{$ogurl|webalize}">
+		<meta property="og:description" content="{$description}">
+		{ifset $ogpublished}<meta property="article:published_time" content="{$ogpublished}">{/ifset}
+		{ifset $ogmodified}<meta property="article:modified_time" content="{$ogmodified}">{/ifset}
+		{ifset $ogimage}<meta property="og:image" content="https://raspberry.pavelrampas.cz/images/{$ogimage}">{/ifset}
+		<meta name="twitter:card" content="summary">
+		<title>{$title} | Raspberry Pi návody</title>
+		<link rel="alternate" type="application/rss+xml" title="Raspberry Pi návody &raquo; RSS zdroj" href="https://raspberry.pavelrampas.cz/rss.xml">
+	</head>
+	<body>
+		<div class="container">
+			<div class="header">
+				<a href="{link Homepage:default}"><h1>Raspberry Pi návody</h1></a>
+			</div>
+			<div class="row">
+				<div class="col-sm-8 article">
+					{include content}
+				</div>
+				<div class="col-sm-4 hidden-print nav">
+					<h3 class="first">Hardware</h3>
+					<ul>
+						<li><a href="{link Homepage:raspberry-pi}">Raspberry Pi</a></li>
+						<li><a href="{link Homepage:prislusenstvi}">Příslušenství</a></li>
+						<li><a href="{link Homepage:chlazeni}">Chlazení</a></li>
+						<li><a href="{link Homepage:napajeni}">Napájení</a></li>
+						<li><a href="{link Homepage:krabicka}">Krabička</a></li>
+					</ul>
+					<h3>Operační systémy</h3>
+					<ul>
+						<li><a href="{link Homepage:priprava-sd-karty}">Příprava SD karty</a></li>
+						<li><a href="{link Homepage:obnoveni-sd-karty}">Obnovení SD karty</a></li>
+						<li><a href="{link Homepage:raspbian}">Raspbian</a></li>
+						<li><a href="{link Homepage:zakladni-prikazy}">Základní příkazy</a></li>
+						<li><a href="{link Homepage:pripojeni-disku}">Připojení disku</a></li>
+						<li><a href="{link Homepage:spravaUzivatelu}">Správa uživatelů</a></li>
+						<li><a href="{link Homepage:noobs}">NOOBS</a></li>
+						<li><a href="{link Homepage:riscOs}">RISC OS</a></li>
+						<li><a href="{link Homepage:pidora}">Pidora</a></li>
+						<li><a href="{link Homepage:archLinux}">Arch Linux</a></li>
+					</ul>
+					<h3>Projekty s&nbsp;Raspbianem</h3>
+					<ul>
+						<li><a href="{link Homepage:pimameARetropie}">PiMAME a&nbsp;RetroPie</a></li>
+						<li><a href="{link Homepage:coder}">Coder</a></li>
+					</ul>
+					<h3>Konfigurace sítě</h3>
+					<ul>
+						<li><a href="{link Homepage:wi-fi}">Wi-Fi</a></li>
+						<li><a href="{link Homepage:ethernet}">Ethernet</a></li>
+						<li><a href="{link Homepage:ssh}">SSH</a></li>
+						<li><a href="{link Homepage:sftp}">SFTP</a></li>
+						<li><a href="{link Homepage:webserverAWordpress}">Webserver a WordPress</a></li>
+					</ul>
+					<h3>Zvuk a video</h3>
+					<ul>
+						<li><a href="{link Homepage:nastaveni-zvuku}">Nastavení zvuku</a></li>
+						<li><a href="{link Homepage:nastaveni-obrazu}">Nastavení obrazu</a></li>
+						<li><a href="{link Homepage:omxplayer}">OMXPlayer</a></li>
+						<li><a href="{link Homepage:mplayer}">MPlayer</a></li>
+					</ul>
+					<h3>Výukové programy</h3>
+					<ul>
+						<li><a href="{link Homepage:scratch}">Scratch</a></li>
+						<li><a href="{link Homepage:wolframAMathematica}">Wolfram a Mathematica</a></li>
+						<li><a href="{link Homepage:sonicPi}">Sonic Pi</a></li>
+						<li><a href="{link Homepage:idle}">IDLE</a></li>
+						<li><a href="{link Homepage:smartSim}">SmartSim</a></li>
+						<li><a href="{link Homepage:minecraftPiEdition}">Minecraft Pi Edition</a></li>
+					</ul>
+				</div>
+			</div>
+			<div class="footer">
+				<a rel="author" href="https://pavelrampas.cz/">Pavel Rampas</a>, raspberry&#064;pavelrampas.cz
+				<br>Zveřejněno pod licencí <a href="https://creativecommons.org/licenses/by-sa/3.0/cz/">CC-BY-SA</a>
+				<br>2014-{date('Y')}
+			</div>
+		</div>
+		<link rel="stylesheet" href="{$basePath}/css/style.css">
+		{include Includes/analytics.latte}
+	</body>
+</html>

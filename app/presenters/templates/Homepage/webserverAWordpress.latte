@@ -1,0 +1,199 @@
+{var $description = 'Lighttpd webserver, PHP, MySQL a WordPress na počítači Raspberry Pi.'}
+{var $title = 'Webserver a WordPress'}
+
+{var $ogurl = 'webserver-a-wordpress'}
+{var $ogpublished = '2015-01-29T10:00:00+00:00'}
+{var $ogimage = 'webserver-a-wordpress/phpinfo.png'}
+
+{block content}
+<h2>Webserver a&nbsp;WordPress</h2>
+<p class="article-meta">
+	<strong>29.01.2015</strong> | Systém: Raspbian 2014-24-12
+</p>
+<p>
+	Při instalaci webserveru je možné vybírat z&nbsp;několika variant.
+	Podrobný test výkonu těch nejpoužívanějších si můžete přečíst v článku
+	<a href="https://www.jeremymorgan.com/blog/programming/raspberry-pi-web-server-comparison/">The Raspberry Pi Web Server Speed Test</a>.
+	Já jsem se rozhodl pro instalaci Lighttpd webserveru, který není nejrychlejší, ale má
+	nízké nároky na výkon zařízení, takže je vhodný pro Raspberry Pi. Návod na instalaci webserveru
+	je z článku <a href="http://www.penguintutor.com/linux/light-webserver">Running a&nbsp;lightweight webserver on the Raspberry Pi (lighttpd)</a>.
+	Jiný návod na instalaci WordPressu s&nbsp;jiným webserverem si můžete přečíst ve výukových materiálech na
+	stránkách Raspberry Pi. Jedná se o&nbsp;článek <a href="http://www.raspberrypi.org/learning/web-server-wordpress/">Web Server Setup and WordPress</a>.
+</p>
+<h3>Instalace Lighttpd</h3>
+<p>K instalaci nám stačí jediný příkaz.</p>
+<pre><code>$ sudo apt-get install lighttpd</code></pre>
+<p>
+	Hned po instalaci si můžeme otevřít prohlížeč v&nbsp;Raspberry Pi a&nbsp;zadat adresu <code>http://localhost/</code>.
+	Měla by se nám otevřít úvodní stránka. Pokud máte Raspberry Pi připojené do domácí sítě.
+	Můžete tuto stránku otevřít i&nbsp;na jiném počítači nebo zařízení. Stačí do prohlížeče zadat IP adresu Raspberry Pi.
+	V mém případě <code>10.0.0.143</code>.
+</p>
+<p>
+	<a href="{$basePath}/images/webserver-a-wordpress/index-lighttpd.png">
+		<img src="{$basePath}/images/webserver-a-wordpress/index-lighttpd.png" title="Úvodní stránka Lighttpd" alt="Úvodní stránka Lighttpd" class="img-responsive img-rounded center-block">
+	</a>
+</p>
+<p>
+	Tato úvodní stránka je uložená v&nbsp;adresáři <code>/var/www</code> v&nbsp;souboru
+	<code>index.lighttpd.html</code> a&nbsp;můžeme jí buď přepsat a&nbsp;nebo si vytvořit novou.
+	Aby se nová stránka spustila místo stávající pojmenujeme soubor <code>index.html</code>.
+</p>
+<pre><code>$ sudo nano /var/www/index.html</code></pre>
+<p>
+	Do souboru napíšeme nějaký text. Třeba <code>Nas prvni text.</code>.
+	Soubor pak uložíme zkratkou Ctrl+O a&nbsp;zavřeme zkratkou Ctrl+X.
+</p>
+<p>
+	Pokud nyní aktualizujeme stránku v&nbsp;prohlížeči. Zobrazí se naše nová stránka s&nbsp;textem, který jsme zadali.
+	Teď už si můžeme vytvořit libovolnou vlastní HTML stránku.
+</p>
+<p>
+	<a href="{$basePath}/images/webserver-a-wordpress/nase-prvni-stranka.png">
+		<img src="{$basePath}/images/webserver-a-wordpress/nase-prvni-stranka.png" title="První stránka v Lighttpd" alt="První stránka v Lighttpd" class="img-responsive img-rounded center-block">
+	</a>
+</p>
+<h3>SFTP</h3>
+<p>
+	Pokud chcete nahrávat soubory do adresáře <code>/var/www</code> přes
+	<a href="{link Homepage:sftp}">SFTP</a> je třeba změnit vlastníka adresáře a&nbsp;nastavit oprávnění.
+	Toto nastavení se bude hodit i&nbsp;při instalaci WordPressu aby jsme nemuseli konfigurační soubor vytvářet ručně, ale
+	mohl si ho WordPress vytvořit sám.
+</p>
+<pre><code>$ sudo chown www-data:www-data /var/www
+$ sudo chmod 775 /var/www
+$ sudo usermod -a -G www-data pi</code></pre>
+<h3>Instalace PHP</h3>
+<p>
+	Pokud nám už obyčejné HTML nestačí. Například protože chceme používat WordPress
+	nebo nějaký jiný redakční systém. Můžeme si nainstalovat PHP.
+</p>
+<pre><code>$ sudo apt-get install php5-common php5-cgi php5</code></pre>
+<p>
+	Po instalaci PHP je třeba povolit službu fastcgi-php a restartovat lighttpd.
+</p>
+<pre><code>$ sudo lighty-enable-mod fastcgi-php
+$ sudo service lighttpd force-reload</code></pre>
+<p>
+	Jestli PHP funguje ověříme vytvořením nového souboru <code>index.php</code>
+	v&nbsp;adresáři <code>/var/www</code>. Předchozí soubor <code>index.html</code> musíme ale smazat.
+</p>
+<pre><code>$ sudo rm /var/www/index.html
+$ sudo nano /var/www/index.php
+</code></pre>
+<p>
+	Do souboru napíšeme následující text. Soubor pak uložíme zkratkou Ctrl+O a&nbsp;zavřeme zkratkou Ctrl+X.
+</p>
+<pre><code>&lt?php phpinfo(); ?&gt</code></pre>
+<p>
+	Pokud nyní aktualizujeme stránku v&nbsp;prohlížeči. Zobrazí se nám informace o&nbsp;konfiguraci PHP.
+	To znamená že je vše v&nbsp;pořádku.
+</p>
+<p>
+	<a href="{$basePath}/images/webserver-a-wordpress/phpinfo.png">
+		<img src="{$basePath}/images/webserver-a-wordpress/phpinfo.png" title="PHP info" alt="PHP info" class="img-responsive img-rounded center-block">
+	</a>
+</p>
+<h3>Instalace MySQL</h3>
+<p>
+	Jako další budeme potřebovat databázi MySQL. Takže si jí nainstalujeme a hned také restartujeme lighttpd.
+</p>
+<pre><code>$ sudo apt-get install mysql-server php5-mysql
+$ sudo service lighttpd force-reload</code></pre>
+<p>
+	Během instalace se několikrát zobrazí žádost o&nbsp;heslo. Pokud nechcete žádné zadávat, tak stačí dát enter.
+</p>
+<p>
+	<a href="{$basePath}/images/webserver-a-wordpress/mysql-heslo.png">
+		<img src="{$basePath}/images/webserver-a-wordpress/mysql-heslo.png" title="MySQL zadání hesla" alt="MySQL zadání hesla" class="img-responsive img-rounded center-block">
+	</a>
+</p>
+<p>
+	Po instalaci můžeme zadat příkaz <code>mysql -u root -p</code> a&nbsp;po zadání hesla, které
+	jsme si nastavili se spustí MySQL monitor. Pokud se tedy vše nainstalovalo správně.
+	program vypneme příkazem <code>exit</code>.
+</p>
+<p>
+	<a href="{$basePath}/images/webserver-a-wordpress/mysql-test.png">
+		<img src="{$basePath}/images/webserver-a-wordpress/mysql-test.png" title="MySQL monitor" alt="MySQL monitor" class="img-responsive img-rounded center-block">
+	</a>
+</p>
+<h3>Instalace WordPressu</h3>
+<p>
+	Teď už máme všechno k&nbsp;tomu aby jsme mohli nainstalovat WordPress.
+	Jako první je potřeba vytvořit databázi. K tomu potřebujeme MySQL monitor, který
+	jsme použili už při instalaci MySQL.
+</p>
+<pre><code>$ mysql -u root -p</code></pre>
+<p>
+	Novou databázi si pojmenujeme <code>wordpress</code> a&nbsp;vytvoříme ji příkazem
+	<code>create database wordpress;</code>. Z MySQL pak vyskočíme příkazem <code>exit</code>.
+</p>
+<p>
+	<a href="{$basePath}/images/webserver-a-wordpress/wordpress-databaze.png">
+		<img src="{$basePath}/images/webserver-a-wordpress/wordpress-databaze.png" title="WordPress vytvoření databáze" alt="WordPress vytvoření databáze" class="img-responsive img-rounded center-block">
+	</a>
+</p>
+<p>
+	Přejdeme do adresáře <code>/var/www</code>.
+</p>
+<pre><code>$ cd /var/www</code></pre>
+<p>
+	Pokud chceme mít WordPress v&nbsp;tomto adresáři. Musíme z&nbsp;ní všechno vymazat.
+	Pokud by jsme ho instalovali do podadresáře můžeme zde soubory nechat. Potom ale
+	budeme zadávat URL adresu ve formátu <code>http://localhost/nazev-podslozky</code>.
+	Vymazání všeho provedeme následujícím příkazem. Dávejte si pozor jestli jste ve správném adresáři.
+	Případně vymažte soubory zadáváním názvu souboru aby jste si nesmazali něco co nechcete.
+</p>
+<pre><code>$ sudo rm *</code></pre>
+<p>
+	WordPress s&nbsp;češtinou stáhneme ze stránek <a href="https://cs.wordpress.org">https://cs.wordpress.org</a>.
+	Před stažením pomocí příkazu se koukněte jaká je aktuální verze a&nbsp;podle toho příkaz upravte.
+</p>
+<pre><code>$ sudo wget https://cs.wordpress.org/wordpress-4.1-cs_CZ.tar.gz</code></pre>
+<p>
+	Stažený archiv rozbalíme.
+</p>
+<pre><code>$ sudo tar -zxvf wordpress-4.1-cs_CZ.tar.gz</code></pre>
+<p>
+	Jestli nechcete soubory mít v&nbsp;podadresáři <code>wordpress</code> do které se rozbalí, tak je všechny přesuňte do
+	adresáře <code>/var/www</code>.
+</p>
+<pre><code>$ sudo mv /var/www/wordpress/* /var/www</code></pre>
+<p>
+	Dál už probíhá instalace v&nbsp;prohlížeči. Takže zadáme adresu <code>http://localhost/</code>
+	nebo IP adresu a&nbsp;otevře se nám začátek instalace.
+</p>
+<p>
+	<a href="{$basePath}/images/webserver-a-wordpress/wordpress-instalace-01.png">
+		<img src="{$basePath}/images/webserver-a-wordpress/wordpress-instalace-01.png" title="WordPress začátek instalace" alt="WordPress začátek instalace" class="img-responsive img-rounded center-block">
+	</a>
+</p>
+<p>
+	V dalším kroku zadáme název databáze, kterou jsme si vytvořili. Což je <code>wordpress</code>. Uživatelské jméno <code>root</code>.
+	Heslo k&nbsp;MySQL databázi. Pokud jsme nějaké zadali. Databázový server <code>localhost</code> a&nbsp;v předponě
+	tabulek můžeme nechat předvyplněnou hodnotu.
+</p>
+<p>
+	<a href="{$basePath}/images/webserver-a-wordpress/wordpress-instalace-02.png">
+		<img src="{$basePath}/images/webserver-a-wordpress/wordpress-instalace-02.png" title="WordPress instalace" alt="WordPress instalace" class="img-responsive img-rounded center-block">
+	</a>
+</p>
+<p>
+	V posledním kroku zadáme jak se bude jmenovat naše stránka. Uživatelské jméno a&nbsp;heslo
+	pro přístup do administrace stránek a&nbsp;emailovou adresu.
+</p>
+<p>
+	<a href="{$basePath}/images/webserver-a-wordpress/wordpress-instalace-03.png">
+		<img src="{$basePath}/images/webserver-a-wordpress/wordpress-instalace-03.png" title="WordPress instalace" alt="WordPress instalace" class="img-responsive img-rounded center-block">
+	</a>
+</p>
+<p>
+	Tím jsme dokončili instalaci a&nbsp;můžeme si zobrazit naše nové stránky běžící na WordPressu.
+	Adresa pro přihlášení do administrace je <code>http://localhost/wp-admin</code>.
+</p>
+<p>
+	<a href="{$basePath}/images/webserver-a-wordpress/wordpress.png">
+		<img src="{$basePath}/images/webserver-a-wordpress/wordpress.png" title="WordPress" alt="WordPress" class="img-responsive img-rounded center-block">
+	</a>
+</p>

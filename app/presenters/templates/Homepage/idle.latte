@@ -1,0 +1,63 @@
+{var $description = 'IDLE je vývojové prostředí pro programovací jazyk Python.'}
+{var $title = 'IDLE'}
+
+{var $ogurl = 'idle'}
+{var $ogpublished = '2014-04-27T10:00:00+00:00'}
+{var $ogimage = 'idle/idle.png'}
+
+{block content}
+<h2>IDLE</h2>
+<p class="article-meta">
+	<strong>27.04.2014</strong>
+</p>
+<p>
+	<a href="https://wiki.python.org/moin/IDLE">IDLE</a> je jednoduché vývojové prostředí
+	pro programovací jazyk <a href="https://www.python.org/">Python</a>. Na ploše Raspianu má dvě ikony.
+	<strong>IDLE</strong> pro Python verze 2 a&nbsp;<strong>IDLE 3</strong> pro Python verze 3.
+	Taky je zde ještě jedna vzhledově stejná ikona s&nbsp;názvem <strong>Python Games</strong>,
+	kterou se spouští jednoduché hry napsané v&nbsp;Pythonu.
+</p>
+<p>
+	<a href="{$basePath}/images/idle/idle-ikona.png">
+		<img src="{$basePath}/images/idle/idle-ikona.png" title="IDLE ikona" alt="IDLE ikona" class="img-responsive img-rounded center-block">
+	</a>
+</p>
+<br>
+<p>
+	Program tedy spustíme ikonou IDLE 3. Otevře se Python Shell. Textový výstup
+	námi napsaných programů. Aby jsme mohli začít psát kód musíme kliknout na <em>File->New Window</em>.
+	Tím se nám otevře nové okno do kterého budeme zapisovat program.
+</p>
+<h3>První program</h3>
+<p>
+	Jako první jednoduchý příklad můžeme do okna pro kód napsat.
+</p>
+<pre><code>print("Ahoj světe!");</code></pre>
+<p>
+	Před spuštěním musíme soubor uložit. Klikneme na <em>File->Save As...</em> a&nbsp;uložíme soubor
+	třeba pod názvem <strong>prvni-program.py</strong>. Když máme uloženo spustíme program
+	buď kliknutím na <em>Run->Run Module</em> nebo použijeme klávesovou zkratku <code>F5</code>.
+	V okně Python Shell se nám vypíše zadaný text "Ahoj světe!".
+</p>
+<p>
+	<a href="{$basePath}/images/idle/idle.png">
+		<img src="{$basePath}/images/idle/idle.png" title="IDLE" alt="IDLE" class="img-responsive img-rounded center-block">
+	</a>
+</p>
+<br>
+<p>
+	Stejně tak by jsme mohli soubor s&nbsp;programem vytvořit v&nbsp;příkazové řádce pomocí Nano.
+	Soubor pak uložíme zkratkou Ctrl+O a&nbsp;zavřeme zkratkou Ctrl+X.
+</p>
+<pre><code>$ nano prvni-program.py</code></pre>
+<p>
+	<a href="{$basePath}/images/idle/python.png">
+		<img src="{$basePath}/images/idle/python.png" title="Python" alt="Python" class="img-responsive img-rounded center-block">
+	</a>
+</p>
+<br>
+<p>
+	Program si pak můžeme v&nbsp;příkazové řádce spustit jedním z&nbsp;následujících příkazů.
+</p>
+<pre><code>$ python prvni-program.py	 # Python verze 2
+$ python3 prvni-program.py	# Python verze 3</code></pre>

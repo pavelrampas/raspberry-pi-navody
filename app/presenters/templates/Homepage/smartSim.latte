@@ -1,0 +1,40 @@
+{var $description = 'Jednoduchý program pro navrhování logických obvodů, který lze nainstalovat na Raspberry Pi.'}
+{var $title = 'SmartSim'}
+
+{var $ogurl = 'smart-sim'}
+{var $ogpublished = '2014-05-04T10:00:00+00:00'}
+{var $ogimage = 'smartsim/smartsim-simulation.png'}
+
+{block content}
+<h2>SmartSim</h2>
+<p class="article-meta">
+	<strong>04.05.2014</strong>
+</p>
+<p>
+	<a href="http://smartsim.org.uk/">SmartSim</a> je program pro navrhování logických obvodů.
+	Nikde se o&nbsp;něm moc nepíše i&nbsp;přesto, že v&nbsp;Raspbianu je předinstalovaný. Nikde ani nemá žádnou ikonu.
+	Spustit si ho můžete příkazem <code>$ smartsim</code>.
+	<a href="http://smartsim.org.uk/index.php?page=examples">Příklady</a>
+	a&nbsp;<a href="http://smartsim.org.uk/index.php?page=downloads">manuál</a> najdete na stránkách projektu.
+</p>
+<p>
+	Pokud máte program spuštěný. Musíte jako první zvolit <em>File->New Project</em> pro
+	vytvoření nového projektu. Jako další musíte pomocí <em>File->New Component</em>
+	vytvořit novou komponentu projektu. Pak už se objeví čverečkovaná plocha na kterou
+	můžete přetahovat objekty z&nbsp;nabídky a&nbsp;vytvořit si tak nějaké zapojení.
+</p>
+<p>
+	Pro spuštění navrženého obvodu je třeba napřed zvolit <em>Component->Set as Root</em>
+	aby se nám spustila právě ta komponenta, kterou jsme zrovna vytvořili. Následně
+	už můžeme spustit simulátor nabídkou <em>Run->Run</em>.
+</p>
+<p>
+	<a href="{$basePath}/images/smartsim/smartsim.png">
+		<img src="{$basePath}/images/smartsim/smartsim.png" title="SmartSim" alt="SmartSim" class="img-responsive img-rounded center-block">
+	</a>
+</p>
+<p>
+	<a href="{$basePath}/images/smartsim/smartsim-simulation.png">
+		<img src="{$basePath}/images/smartsim/smartsim-simulation.png" title="SmartSim simulátor" alt="SmartSim simulátor" class="img-responsive img-rounded center-block">
+	</a>
+</p>

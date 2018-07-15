@@ -1,0 +1,81 @@
+{var $description = 'Operační systém PiMAME a RetroPie pro počítač Raspberry Pi. Systémy zaměřené na hraní konzolových her pomocí emulátorů.'}
+{var $title = 'PiMAME a RetroPie'}
+
+{var $ogurl = 'pimame-a-retropie'}
+{var $ogpublished = '2014-03-30T10:00:00+00:00'}
+
+{block content}
+<h2>PiMAME a&nbsp;RetroPie</h2>
+<p class="article-meta">
+	<strong>30.03.2014</strong>
+</p>
+<p>
+	Oba systémy jsou si velmi podobné. Základem je Raspbian do kterého je doinstalovaná
+	řada emulátorů nejrůznějších herních konzolí. Těžko říct který z&nbsp;těchto dvou systémů je
+	lepší. Mě ale víc vyhovuje PiMAME.
+</p>
+<p>
+	Instalace probíhá klasicky nahráním systému na kartu. Popis je v&nbsp;kapitole
+	<a href="{link Homepage:priprava-sd-karty}">Příprava SD karty</a>.
+</p>
+<h3>PiMAME</h3>
+<p>
+	<strong>Stránky projektu:</strong> <a href="http://pimame.org/">pimame.org</a>
+</p>
+<p>
+	<strong>Stažení obrazu:</strong> <a href="http://sourceforge.net/projects/pimame/files/">sourceforge.net/projects/pimame/files/</a>
+</p>
+<p>
+	<strong>Seznam emulátorů:</strong> Na hlavní stránce projektu.
+</p>
+<p>
+	Po spuštění naběhne jednoduché grafické menu, kde je možné vybrat si určitou herní konzoli.
+	Pak si stačí vybrat hru ze seznamu. Hry je ovšem napřed potřeba někde si opatřit
+	a&nbsp;nahrát do příslušného adresáře. K tomu je dobré dostat se do grafického
+	prostředí Raspbianu. Stiskneme <code>Esc</code>. Tím se dostaneme do příkazové řádky.
+	Zadáme <code>$ startx</code>. Nejspíš nás to vrátí do prostředí PiMAME, ale stačí znova
+	stisknout <code>Esc</code> a&nbsp;už se dostaneme do Raspbianu. Důležitých je několik adresářů.
+</p>
+<p>
+	Soubory s&nbsp;hrami se nahrávají do příslušných adresářů, které se nacházejí v&nbsp;adresáři.
+</p>
+<pre><code>/home/pi/pimame/roms</code></pre>
+<p>
+	Abyste mohli hrát hry pro Game Boy Advance je potřeba si vygooglit a&nbsp;stáhnout bios soubor.
+	Obvykle má název <code>gba_bios.bin</code> a&nbsp;je třeba umístit ho do adresáře.
+</p>
+<pre><code>/home/pi/pimame/emulators/gpsp</code></pre>
+<p>
+	Stejně tak pro hraní her na PlayStation je potřeba také bios soubor. Ten se obvykle jmenuje
+	<code>SCPH1001.BIN</code>. Číslo se může lišit. Bios je třeba umístit do adresáře.
+</p>
+<pre><code>/home/pi/pimame/pimame-menu/bios</code></pre>
+<h3>RetroPie</h3>
+<p>
+	<strong>Stránky projektu:</strong> <a href="http://blog.petrockblock.com/">blog.petrockblock.com</a>
+</p>
+<p>
+	<strong>Stažení obrazu:</strong> <a href="http://blog.petrockblock.com/retropie/retropie-downloads/">blog.petrockblock.com/retropie/retropie-downloads/</a>
+</p>
+<p>
+	<strong>Seznam emulátorů:</strong> <a href="https://github.com/petrockblog/RetroPie-Setup/wiki/Supported-Systems-Emulators">github.com/petrockblog/RetroPie-Setup/wiki/Supported-Systems-Emulators</a>
+</p>
+<p>
+	Po spuštění se jako první zapne průvodce nastavení kláves. Po něm už naběhne grafické menu.
+	Už po instalaci by měli být dostupné tři hry. CaveStory, Doom a&nbsp;Duke Nukem 3D. Do příkazové
+	řádky se dá dostat kombinací <code>Alt+F4</code> a&nbsp;pak opět stačí zadat <code>$ startx</code>
+	pro spuštění rozhraní Raspbianu.
+</p>
+<p>
+	Soubory s&nbsp;hrami se nahrávají do příslušných adresářů, které se nacházejí v&nbsp;adresáři.
+</p>
+<pre><code>/home/pi/RetroPie/roms</code></pre>
+<p>
+	Stejně jako u&nbsp;PiMAME je pro Game Boy Advance potřeba bios soubor, který patří do adresáře.
+</p>
+<pre><code>/home/pi/RetroPie/emulators/gpsp</code></pre>
+<h3>Hry</h3>
+<p>
+	Stránek s&nbsp;hrami (romkami) je na internetu velké množství a&nbsp;všechny obsahují spoustu her,
+	takže stačí hledat. Jedna z&nbsp;takových stránek je například <a href="http://coolrom.com/">CoolROM</a>.
+</p>

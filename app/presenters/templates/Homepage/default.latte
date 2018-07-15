@@ -1,0 +1,24 @@
+{var $description = 'Návody a rady pro malý, jednodeskový počítač Raspberry Pi.'}
+{var $title = 'Úvod'}
+
+{var $ogurl = ''}
+
+{block content}
+<h2>Úvod</h2>
+<p>
+	Protože jsem často narážel na články o&nbsp;Raspberry Pi na internetu, rozhodl jsem se na
+	podzim 2013 si jeden kousek také pořídit abych si vyzkoušel co všechno to dokáže.
+	Když jsem časem zjistil, že není zas tak moc česky psaných návodů, rozhodl jsem se vytvořit tyto stránky.
+	Třeba Vám usnadní vlastní pokusy s&nbsp;Raspberry Pi. Návody se snažím průběžně aktualizovat
+	aby odpovídaly posledním verzím systémů a programů.
+</p>
+<h2 class="news" id="novinky">Novinky a zajímavosti<span class="rss"><a href="{link Rss:default}">RSS</a></span></h2>
+<div n:foreach="$posts as $post" class="news">
+	<h3><a href="{link News:default $post->id}-{$post->title|webalize}">{$post->title|noescape}</a></h3>
+	<div class="date">{$post->date|date:'d.m.Y'}</div>
+	<div class="content">{$post->content|noescape}</div>
+</div>
+
+<p><a n:href="this, strana => $page-1" n:if="$page > 1">← novejší</a>
+	&nbsp;&nbsp;&nbsp;
+	<a n:href="this, strana => $page+1" n:if="$iterations == $number">starší →</a></p>

@@ -1,0 +1,157 @@
+{var $description = 'Program MPlayer pro přehrávání zvukových souborů a internetového rádia na Raspberry Pi.'}
+{var $title = 'MPlayer'}
+
+{var $ogurl = 'mplayer'}
+{var $ogpublished = '2014-03-23T10:00:00+00:00'}
+
+{block content}
+<h2>MPlayer</h2>
+<p class="article-meta">
+	<strong>23.03.2014</strong>
+</p>
+<p>
+	Předinstalovaný přehrávač v&nbsp;Raspbianu je <a href="http://omxplayer.sconde.net/">OMXPlayer</a>,
+	který na rozdíl od jiných dokáže plynule přehrávat video, ale na hudbu je
+	lepší si doinstalovat <a href="http://www.mplayerhq.hu/">MPlayer</a>.
+</p>
+<pre><code>$ sudo apt-get install mplayer</code></pre>
+<p>
+	Přehrávač se ovládá pomocí příkazů a&nbsp;nezaleží na tom jestli pracujete v&nbsp;grafickém
+	nebo textovém režimu. Spuštění přehrávání není nijak složité. K dispozici je
+	dokonce český překlad <a href="http://www.mplayerhq.hu/DOCS/HTML/cs/index.html">dokumentace</a>
+	nebo <a href="http://www.mplayerhq.hu/DOCS/man/cs/mplayer.1.html">manuál</a>, který
+	si ale můžete zobrazit i&nbsp;v Raspberry Pi příkazem <code>$ man mplayer</code>. Hned na začátku
+	manuálu je seznam kláves a&nbsp;jejich funkcí jako je pauza a&nbsp;přeskočení na další skladbu.
+</p>
+<h3>Základní ovládání</h3>
+<p>
+	Základem je přehrání jednoto souboru.
+</p>
+<pre><code>$ mplayer soubor.mp3</code></pre>
+<p>
+	Častěji se asi bude hodit přehrání celé složky souborů.
+</p>
+<pre><code>$ mplayer složka/*</code></pre>
+<p>
+	Složek můžeme do přehrávače zadat i&nbsp;víc najednou.
+</p>
+<pre><code>$ mplayer složka1/* složka2/*</code></pre>
+<p>
+	Nebo pokud by jsme měli složku "Hudba" ve které by byly další složky můžeme přehrát všechny.
+</p>
+<pre><code>$ mplayer Hudba/*/*</code></pre>
+<p>
+	Další užitečnou věcí je přehrávání souborů v&nbsp;náhodném pořadí.
+</p>
+<pre><code>$ mplayer -shuffle složka/*</code></pre>
+<p>
+	Můžeme také nastavit počet opakování přehrávání.
+	V případě, že nastavíme hodnotu na "0" bude přehrávání bežet do nekonečna
+	a&nbsp;samozřejmě to lze zkombinovat s&nbsp;náhodným přehráváním.
+</p>
+<pre><code>$ mplayer -loop 0 složka/*</code></pre>
+<p>
+	Poslední užitečnou vlastností je přehrávání internetového rádia. K tomu si napřed
+	musíme stáhnout soubor požadovaného rádia nebo si zjistit webovou adresu jeho
+	streamu. Velký výběr rádií celého světa je na stránce
+	<a href="http://www.mikesradioworld.com/">Mike’s Radio World</a>.
+</p>
+<pre><code>$ mplayer -playlist soubor.m3u		(stažený soubor)
+$ mplayer http://adresa.cz/soubor.mp3 (adresa streamu)</code></pre>
+<h3>Přehrávání na pozadí s&nbsp;ovládáním</h3>
+<p>
+	Při spuštění MPlayeru se nám v&nbsp;konzoli zobrazuje průběh přehrávání a&nbsp;nemůžeme tedy
+	zadávat příkazy. Proto je možné MPlayer spustit na pozadí. Pro ovládání je pak
+	ale zapotřebí vytvořit vstupní soubor a&nbsp;správně nastavit MPlayer.
+</p>
+<ol>
+	<li>
+		<p>
+			Napřed si vytvoříme FIFO soubor.
+		</p>
+		<pre><code>$ mkfifo ~/.mplayer/fifo</code></pre>
+	</li>
+	<li>
+		<p>
+			Otevřeme si konfigurační soubor MPlayeru.
+		</p>
+		<pre><code>$ nano ~/.mplayer/config</code></pre>
+		<p>
+			Do souboru dopíšeme cestu k&nbsp;našemu FIFO souboru. Soubor uložíme Ctrl+O
+			a&nbsp;zavřeme Ctrl+X.
+		</p>
+		<pre><code>input = file=/home/pi/.mplayer/fifo</code></pre>
+	</li>
+	<li>
+		<p>
+			Vytvoříme si nový soubor aby jsme nemuseli pokaždé zadávat složitý příkaz.
+		</p>
+		<pre><code>$ nano ~/mplayer-cmd.sh</code></pre>
+		<p>
+			Do souboru napíšeme následující dvě řádky. Soubor uložíme Ctrl+O
+			a&nbsp;zavřeme Ctrl+X.
+		</p>
+		<pre><code>#!/bin/sh
+echo "$@" > ~/.mplayer/fifo</code></pre>
+		<p>
+			Ještě souboru nastavíme práva.
+		</p>
+		<pre><code>$ sudo chmod 755 ~/mplayer-cmd.sh</code></pre>
+	</li>
+	<li>
+		<p>
+			Teď už můžeme spustit přehrávání běžící na pozadí.
+		</p>
+		<pre><code>$ mplayer -slave složka/* < /dev/null &> /dev/null &</code></pre>
+	</li>
+	<li>
+		<p>
+			Přehrávač teď můžeme ovládat příkazy. Například pauza.
+		</p>
+		<pre><code>$ ~/mplayer-cmd.sh pause</code></pre>
+		<p>
+			Seznam všech příkazů je na stránce <a href="http://www.mplayerhq.hu/DOCS/tech/slave.txt">SLAVE MODE PROTOCOL</a>.
+		</p>
+	</li>
+	<li>
+		<p>
+			Až budete chtít přehrávač vypnout stačí použít.
+		</p>
+		<pre><code>$ killall mplayer</code></pre>
+	</li>
+</ol>
+<h3>Usnadnění</h3>
+<p>
+	Protože příkaz pro spuštění přehrávání na pozadí je dost dlouhý je jednodušší
+	napsat si ho do souboru. Uděláme to stejně jako při vytváření souboru pro ovládání MPlayeru.
+</p>
+<ol>
+	<li>
+		<p>
+			Vytvoříme si soubor s&nbsp;nějakým názvem.
+		</p>
+		<pre><code>$ nano ~/hudba.sh</code></pre>
+	</li>
+	<li>
+		<p>
+			Do souboru napíšeme následující řádky. Soubor uložíme Ctrl+O
+			a&nbsp;zavřeme Ctrl+X.
+		</p>
+		<pre><code>#!/bin/bash
+mplayer -slave -shuffle -loop 0 "$@" < /dev/null &> /dev/null &
+</code></pre>
+	</li>
+	<li>
+		<p>
+			Souboru nastavíme práva.
+		</p>
+		<pre><code>$ sudo chmod 755 ~/hudba.sh</code></pre>
+	</li>
+	<li>
+
+		<p>
+			A můžeme spouštět přehrávání jednoduše.
+		</p>
+		<pre><code>$ ~/hudba.sh složka/*</code></pre>
+	</li>
+</ol>

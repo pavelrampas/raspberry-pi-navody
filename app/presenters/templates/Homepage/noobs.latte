@@ -1,0 +1,69 @@
+{var $description = 'NOOBS je jednochudý způsob jak nainstalovat více operačních systémů pro Raspberry Pi na jednu kartu.'}
+{var $title = 'NOOBS'}
+
+{var $ogurl = 'noobs'}
+{var $ogpublished = '2014-04-06T10:00:00+00:00'}
+{var $ogimage = 'noobs/noobs.png'}
+
+{block content}
+<h2>NOOBS</h2>
+<p class="article-meta">
+	<strong>06.04.2014</strong>
+</p>
+<p>
+	<a href="http://www.raspberrypi.org/help/noobs-setup/">NOOBS</a> vlastně není
+	operační systém, ale pouze pomůcka pro jeho instalaci.
+	Při instalaci jednoho systému to ani není nijak jednodušší oproti normálnímu postupu.
+	Výhodou je možnost nainstalovat víc systémů na jednu kartu. Při startu je potom možné
+	vybrat si jaký systém se má spustit.
+</p>
+<h3>Příprava SD karty</h3>
+<ol>
+	<li>
+		<p>
+			Stáhneme si NOOBS z&nbsp;<a href="http://www.raspberrypi.org/downloads/">oficiálních stránek</a>.
+			Na výběr je Network verze, kdy se systémy instalují z&nbsp;internetu a&nbsp;Offline and network verze,
+			která obsahu nejpoužívanější systémy a&nbsp;ostatní se instalují z&nbsp;internetu.
+		</p>
+	</li>
+	<li>
+		<p>Soubor bude zabalený v&nbsp;.zip souboru, takže ho rozbalíme.</p>
+	</li>
+	<li>
+		<p>Vložíme SD kartu do počítače. Karta musí mít minimálně 8&nbsp;GB.</p>
+	</li>
+	<li>
+		<p>
+			Na SD kartě by měl být pouze jeden oddíl. Pokud není můžete ostatní odstranit podle
+			návodu v&nbsp;kapitole <a href="{link Homepage:obnoveni-sd-karty}">Obnovení SD karty</a>.
+			Kartu by jste také měli zformátovat. Podle oficiálního návodu by jste k&nbsp;tomu měli
+			použít program <a href="https://www.sdcard.org/downloads/formatter_4/">SD Formatter 4.0</a>.
+			Já jsem SD kartu formátoval normálně ve Windows přes Průzkumníka a&nbsp;stačilo to.
+		</p>
+	</li>
+	<li>
+		<p>Rozbalené soubory, které jsme si připravili ve druhém kroku normálně nakopírujeme na kartu.</p>
+	</li>
+	<li>
+		<p>Karta je připravena. Můžeme jí vyndat a&nbsp;použít v&nbsp;Raspberry Pi.</p>
+	</li>
+</ol>
+<h3>Instalace</h3>
+<p>
+	Po spuštění se zobrazí tabulka se seznamem operačních systémů. U každého je vidět
+	jestli je pro instalaci potřeba připojení k&nbsp;internetu nebo jestli se systém nainstaluje
+	z&nbsp;SD karty. Můžeme si zaškrtnou kolik systému chceme, tak aby se nám na SD kartu vešly.
+	Velikost vidíme dole v&nbsp;okně. Nakonec stačí kliknout na tlačítko Install.
+</p>
+<p>
+	Jakmile skončí instalace objeví se podobná tabulka se seznamem nainstalovaných
+	systému. Ta se objeví i&nbsp;při každém spuštění Raspberry Pi. Stačí si tedy vybrat,
+	který systém se má spustit.
+</p>
+<p>
+	<a href="{$basePath}/images/noobs/noobs.png">
+		<img src="{$basePath}/images/noobs/noobs.png" title="NOOBS" alt="NOOBS" class="img-responsive img-rounded center-block">
+	</a>
+	<em>Zdroj: <a href="http://www.raspberrypi.org/be-a-noobs-v1-3-beta-tester/">http://www.raspberrypi.org/</a></em>
+</p>
+<br>

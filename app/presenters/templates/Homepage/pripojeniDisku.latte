@@ -1,0 +1,76 @@
+{var $description = 'Připojení flash disku nebo externího pevného disku v Raspbianu k jednodeskovému počítači Raspberry Pi.'}
+{var $title = 'Připojení disku'}
+
+{var $ogurl = 'pripojeni-disku'}
+{var $ogpublished = '2014-03-02T10:00:00+00:00'}
+{var $ogmodified = '2014-10-19T10:00:00+00:00'}
+{var $ogimage = 'pripojeni-disku/pripojeni-disku-graficke-rozhrani.png'}
+
+{block content}
+<h2>Připojení disku</h2>
+<p class="article-meta">
+	<strong>02.03.2014</strong> | Aktualizace: 19.10.2014 | Systém: Raspbian 2014-09-09
+</p>
+<p>
+	Ať už se jedná o&nbsp;flash disk nebo externí pevný disk s&nbsp;USB. Všechny tyto zařízení se
+	k&nbsp;Raspberry Pi připojují stejně.
+</p>
+<h3>Grafické rozhraní</h3>
+<p>
+	V grafickém rozhraní stačí připojit disk do USB a&nbsp;vyskočí klasická hláška
+	o&nbsp;vložení odpojitelného média, které si můžeme rovnou otevřít ve správci souborů.
+	<br><br>
+	<a href="{$basePath}/images/pripojeni-disku/pripojeni-disku-graficke-rozhrani.png">
+		<img src="{$basePath}/images/pripojeni-disku/pripojeni-disku-graficke-rozhrani.png" title="připojení disku" alt="připojení disku" class="img-responsive img-rounded center-block">
+	</a>
+	<br>
+</p>
+<h3>Textové rozhraní</h3>
+<p>
+	Pokud používáte pouze textové rozhraní postupujeme následovně.
+</p>
+<ol>
+	<li>Připojíme disk do USB.</li>
+	<li>
+		<p>
+			Vypíšeme si seznam připojených disků a&nbsp;najdeme řádek s&nbsp;naším diskem.
+			V&nbsp;tomto případě je to sda1.
+		</p>
+		<pre><code>$ sudo fdisk -l</code></pre>
+		<p>
+			<a href="{$basePath}/images/pripojeni-disku/pripojeni-disku.png">
+				<img src="{$basePath}/images/pripojeni-disku/pripojeni-disku.png" title="tail -f /var/log/messages" alt="tail -f /var/log/messages" class="img-responsive img-rounded center-block">
+			</a>
+		</p>
+		<br>
+	</li>
+	<li>
+		<p>
+			Vytvoříme složku do které budeme disk připojovat. Ta nám zůstane i&nbsp;do
+			budoucna a&nbsp;můžeme jí používat stále dokola.
+		</p>
+		<pre><code>$ sudo mkdir /media/disk</code></pre>
+	</li>
+	<li>
+		<p>
+			Připojíme disk do připravené složky.
+		</p>
+		<pre><code>$ sudo mount /dev/sda1 /media/disk/</code></pre>
+		<p>
+			V&nbsp;některých případech se může stát, že do příkazu bude potřeba zadat souborový systém disku.
+		</p>
+		<pre><code>$ sudo mount <b>-t vfat</b> /dev/sda1 /media/disk/</code></pre>
+		<p>
+			Varianty souborových systému jsou například.
+		</p>
+		<ul>
+			<li><code>ntfs-3g</code> - NTFS - Je nutné doinstalovat příkazem <code>$ sudo apt-get install ntfs-3g</code></li>
+			<li><code>vfat</code> - FAT32</li>
+			<li><code>ext4</code> - Ext4</li>
+		</ul>
+	</li>
+	<li>
+		<p>Pokud budeme chtít disk odpojit, tak použijeme.</p>
+		<pre><code>$ sudo umount /media/disk</code></pre>
+	</li>
+</ol>

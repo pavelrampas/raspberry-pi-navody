@@ -1,0 +1,25 @@
+{
+	"name": "Raspberry Pi návody",
+	"description": "Raspberry Pi návody: stránka s návody k Raspberry Pi",
+	"keywords": ["nette", "raspberry pi", "raspbian"],
+	"type": "project",
+	"require": {
+		"php": ">= 7.1",
+		"nette/application": "^2.4",
+		"nette/bootstrap": "^2.4.2",
+		"nette/caching": "^2.5",
+		"nette/di": "^2.4",
+		"nette/finder": "^2.4",
+		"nette/http": "^2.4",
+		"nette/robot-loader": "^2.4 || ^3.0",
+		"nette/utils": "^2.4",
+		"latte/latte": "^2.4",
+		"tracy/tracy": "^2.4",
+		"twbs/bootstrap": "^3.3.7"
+	},
+	"scripts": {
+        "less": [
+            "node_modules/less/bin/lessc less/import.less --autoprefix --clean-css > www/css/style.css"
+        ]
+    }
+}

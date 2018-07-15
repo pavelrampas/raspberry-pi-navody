@@ -1,0 +1,97 @@
+{var $description = 'Chlazení Raspberry Pi pasivním chladičem. Vliv krabičky na chlazení'}
+{var $title = 'Chlazení'}
+
+{var $ogurl = 'chlazeni'}
+{var $ogpublished = '2014-02-23T10:00:00+00:00'}
+{var $ogimage = 'chlazeni/raspberry-pi-chlazeni.jpg'}
+
+{block content}
+<h2>Chlazení</h2>
+<p class="article-meta">
+	<strong>23.02.2014</strong>
+</p>
+<p>
+	I když chladit Raspberry Pi není potřeba, spousta lidí rádo používá různé pasivní
+	chladiče buď koupené nebo domácí výroby. V obchodech se dají sehnat chladiče přímo
+	určené pro Raspberry Pi svými rozměry a&nbsp;počtem. Já jsem volil sadu 8 chladičů
+	<a href="http://www.czc.cz/primecooler-pc-rhs2/32331/produkt">Primecooler PC-RHS2</a>
+	určenou pro grafické karty. Tyto chladiče jsem pak použil v&nbsp;následujících testech.
+	K zjištění teploty jsem použil příkaz <code>$ vcgencmd measure_temp</code>.
+</p>
+<p>
+	První test proběhl hned den kdy jsem chladiče montoval napřed jsem provedl měření
+	během různých činností bez chladičů a&nbsp;poté s&nbsp;přilepenými chladiči. Raspberry Pi přitom
+	bylo v&nbsp;krabičce vyrobené ze stavebnice Cheva.
+</p>
+<br>
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th></th>
+			<th>Teploty bez chladiče:</th>
+			<th>Teploty s&nbsp;chladičem:</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>v nečinnosti</td>
+			<td>45&nbsp;°C</td>
+			<td>42&nbsp;°C</td>
+		</tr>
+		<tr>
+			<td>přehrávání filmu 1080p</td>
+			<td>50&nbsp;°C</td>
+			<td>48&nbsp;°C</td>
+		</tr>
+		<tr>
+			<td>hraní <a href="http://store.raspberrypi.com/projects/littlecrane">The Little Crane That Could</a></td>
+			<td>57&nbsp;°C</td>
+			<td>55&nbsp;°C</td>
+		</tr>
+	</tbody>
+</table>
+<br>
+<p>
+	Druhý test jsem prováděl o&nbsp;pár měsíců později, když jsem přemýšlel jak velký
+	vliv na teplotu má samotná krabička. Provedl jsem ty samé testy tentokrát v&nbsp;tenké
+	plastové krabičce a&nbsp;bez ní. Krabička měla pouze výřezy na konektory a&nbsp;jeden malý otvor ve víku.
+</p>
+<br>
+<table class="table table-bordered table-hover">
+	<thead>
+		<tr>
+			<th></th>
+			<th>Teploty s&nbsp;krabičkou:</th>
+			<th>Teploty bez krabičky:</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>v nečinnosti</td>
+			<td>48&nbsp;°C</td>
+			<td>41&nbsp;°C</td>
+		</tr>
+		<tr>
+			<td>přehrávání filmu 1080p</td>
+			<td>50&nbsp;°C</td>
+			<td>44&nbsp;°C</td>
+		</tr>
+		<tr>
+			<td>hraní <a href="http://store.raspberrypi.com/projects/littlecrane">The Little Crane That Could</a></td>
+			<td>56&nbsp;°C</td>
+			<td>50&nbsp;°C</td>
+		</tr>
+	</tbody>
+</table>
+<br>
+<p>
+	Z testů vyplynulo, že pasivní chladiče ovlivňují výslednou teplotu jenom minimálně.
+	Způsobují ale pomalejší stoupání teplot a&nbsp;rychlejší ochlazovaní při změnách zátěže.
+	Výsledné teploty mnohem víc ovlivňuje krabička a&nbsp;to podle toho jak moc
+	umožňuje proudění vzduchu.
+</p>
+<p>
+	<a href="{$basePath}/images/chlazeni/raspberry-pi-chlazeni.jpg">
+		<img src="{$basePath}/images/chlazeni/raspberry-pi-chlazeni.jpg" title="chlazení Raspberry Pi" alt="chlazení Raspberry Pi" class="img-responsive img-rounded">
+	</a>
+</p>

@@ -1,0 +1,104 @@
+{var $description = 'Připojení Raspberry Pi do sítě pomocí Ethernetu, síťového kabelu.'}
+{var $title = 'Ethernet'}
+
+{var $ogurl = 'ethernet'}
+{var $ogpublished = '2014-03-09T10:00:00+00:00'}
+{var $ogimage = 'ethernet/ip-adresa-a-maska.png'}
+
+{block content}
+<h2>Ethernet</h2>
+<p class="article-meta">
+	<strong>09.03.2014</strong>
+</p>
+<p>
+	Pokud Raspberry Pi připojíme k&nbsp;nějakému zařízení jako je modem nebo switch, které
+	disponuje DHCP, tak se veškeré nastavení provede automaticky. Ale někdy se může stát,
+	že budeme potřebovat IP adresu nastavit ručně. Například když budeme Raspberry Pi
+	připojovat přímo k&nbsp;jinému počítači. Následující postup popisuje jak propojit počítač
+	s&nbsp;Windows 7 a&nbsp;Raspberry Pi. Obě zařízení musíme mít samozřejmě propojené síťovým kabelem.
+</p>
+<h3>Nastavení Raspberry Pi</h3>
+<ol>
+	<li>
+		<p>Otevřeme si soubor interfaces.</p>
+		<pre><code>$ sudo nano /etc/network/interfaces</code></pre>
+	</li>
+	<li>
+		<p>
+			V souboru najdeme řádku iface eth0 inet dhcp a&nbsp;změníme dhcp za <b>static</b>.
+			Na další dvě řádky dopíšeme IP&nbsp;adresu 192.168.0.1 a&nbsp;masku sítě 255.255.255.0.
+			Obě řádky musí začínat odsazením tabulátoru.
+		</p>
+		<pre>
+<code>iface eth0 inet dhcp
+	address 192.168.0.1
+	netmask 255.255.255.0</code>
+		</pre>
+		<p>
+			<a href="{$basePath}/images/ethernet/interfaces.png">
+				<img src="{$basePath}/images/ethernet/interfaces.png" title="interfaces" alt="interfaces" class="img-responsive img-rounded center-block">
+			</a>
+		</p>
+		<br>
+	</li>
+	<li>
+		<p>Restartujeme Raspberry Pi.</p>
+		<pre><code>$ sudo reboot</code></pre>
+	</li>
+	<li>
+		<p>
+			Nakonec si můžeme zkontrolovat nastavení. Měli by jsme vidět IP adresu, kterou jsme zadali.
+		</p>
+		<pre><code>$ ifconfig</code></pre>
+		<p>
+			<a href="{$basePath}/images/ethernet/ifconfig.png">
+				<img src="{$basePath}/images/ethernet/ifconfig.png" title="ifconfig" alt="ifconfig" class="img-responsive img-rounded center-block">
+			</a>
+		</p>
+	</li>
+</ol>
+<h3>Nastavení počítače s&nbsp;Windows 7</h3>
+<ol>
+	<li>
+		<p>
+			Dostaneme se do nastavení sítí. Cesta je buď <b>Ovládací panely\Síť a&nbsp;Internet\Centrum síťových připojení a&nbsp;sdílení</b>
+			nebo <b>Ovládací panely\Všechny položky Ovládacích panelů\Centrum síťových připojení a&nbsp;sdílení</b>
+		</p>
+	</li>
+	<li>
+		<p>Vybereme naše připojení k&nbsp;místní síti.</p>
+		<p>
+			<a href="{$basePath}/images/ethernet/centrum-sitovych-pripojeni-a-sdileni.png">
+				<img src="{$basePath}/images/ethernet/centrum-sitovych-pripojeni-a-sdileni.png" title="centrum síťových připojení a&nbsp;sdílení" alt="centrum síťových připojení a&nbsp;sdílení" class="img-responsive img-rounded center-block">
+			</a>
+		</p>
+		<br>
+	</li>
+	<li>
+		<p>V dalším okně vybereme Vlastnosti.</p>
+		<p>
+			<a href="{$basePath}/images/ethernet/pripojeni-k-minstni-siti.png">
+				<img src="{$basePath}/images/ethernet/pripojeni-k-minstni-siti.png" title="připojení k&nbsp;místní síti" alt="připojení k&nbsp;místní síti" class="img-responsive img-rounded center-block">
+			</a>
+		</p>
+		<br>
+	</li>
+	<li>
+		<p>Vybereme protokol IP verze 4 a&nbsp;klepneme na Vlastnosti.</p>
+		<p>
+			<a href="{$basePath}/images/ethernet/tcp-ipv4.png">
+				<img src="{$basePath}/images/ethernet/tcp-ipv4.png" title="protokol IP verze 4" alt="protokol IP verze 4" class="img-responsive img-rounded center-block">
+			</a>
+		</p>
+		<br>
+	</li>
+	<li>
+		<p>Zadáme IP adresu 192.168.0.2 a&nbsp;masku 255.255.255.0. Všechno potvrdíme a&nbsp;je to.</p>
+		<p>
+			<a href="{$basePath}/images/ethernet/ip-adresa-a-maska.png">
+				<img src="{$basePath}/images/ethernet/ip-adresa-a-maska.png" title="IP adresa a&nbsp;maska" alt="IP adresa a&nbsp;maska" class="img-responsive img-rounded center-block">
+			</a>
+		</p>
+		<br>
+	</li>
+</ol>

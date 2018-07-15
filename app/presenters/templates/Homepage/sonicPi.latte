@@ -1,0 +1,98 @@
+{var $description = 'Sonic Pi je program pro výuku programování tvorbou hudby.'}
+{var $title = 'Sonic Pi'}
+
+{var $ogurl = 'sonic-pi'}
+{var $ogpublished = '2014-04-27T10:00:00+00:00'}
+{var $ogimage = 'sonic-pi/sonic-pi.png'}
+
+{block content}
+<h2>Sonic Pi</h2>
+<p class="article-meta">
+	<strong>27.04.2014</strong>
+</p>
+<p>
+	Program ve kterém se můžete učit programovat tím, že vytváříte hudbu.
+	V Raspbianu je už předinstalovaný, ale nemá ikonu na ploše. Najít ho můžete
+	v&nbsp;nabídce pod záložkou vzdělávání.
+</p>
+<p>
+	<a href="{$basePath}/images/sonic-pi/sonic-pi-ikona.png">
+		<img src="{$basePath}/images/sonic-pi/sonic-pi-ikona.png" title="Sonic Pi ikona" alt="Sonic Pi ikona" class="img-responsive img-rounded center-block">
+	</a>
+</p>
+<br>
+<p>
+	Celý program se skládá ze tří tlačítek (Přehrát, Zastavit, Uložit) a&nbsp;tří oken
+	(Okno pro psaní kódu, Výpis průběhu přehrávání, Výpis chyb). Z toho plyne opravdu
+	jednoduché ovládání. Napíšete požadovaný kód a&nbsp;spustíte přehrávání.
+	Pro zápis not se používá <a href="http://cs.wikipedia.org/wiki/Musical_Instrument_Digital_Interface">MIDI</a>
+	a&nbsp;k dispozici je 5 druhů zvuků.
+<pre><code>dull_bell, pretty_bell, fm, beep, saw_beep</code></pre>
+</p>
+<p>
+	<a href="{$basePath}/images/sonic-pi/sonic-pi.png">
+		<img src="{$basePath}/images/sonic-pi/sonic-pi.png" title="Sonic Pi" alt="Sonic Pi" class="img-responsive img-rounded center-block">
+	</a>
+</p>
+<br>
+<p>
+	Na <a href="http://www.cl.cam.ac.uk/projects/raspberrypi/sonicpi/">stránkách projektu</a>
+	je k&nbsp;dispozici dokumentace a&nbsp;výukové materiály. Mezi nimi lze najít i&nbsp;následující
+	Demo Program. Původní anglické komentáře jsem se pokusil přeložit do češtiny.
+</p>
+<pre><code># Sonic Pi Demo Program
+# Pro spuštění stiskněte Play a&nbsp;pro zastavení Stop
+
+# Nastavení tempa
+with_tempo 350
+
+# Následující sekvence se přehraje dvakrát se základním druhem zvuku
+2.times do
+	play_pattern [40,25,45,25,25,50,50]
+	play_pattern [25,50,25,30,35,40,45,50]
+	play_pattern [25,50,25,30,35,40,45,50].reverse
+end
+
+# Následující sekvence se přehraje dvakrát a&nbsp;použije se zvuk saw_beep
+2.times do
+	with_synth "saw_beep"
+	play_pattern [25,50,25,30,35,40,45,50].shuffle
+	play_pattern [25,50,25,30,35,40,45,50].reverse
+end
+
+# Ukázka hraní několika zvuků v&nbsp;jednu chvíli.
+# Jednotlivá vlákna hrají současně.
+
+# Trvale běžící zvuk na pozadí, který se mění
+# podle toho jak hýbete myší. Běží dokud nestisknete
+# tlačítko Stop.
+play_pad "saws", 3
+
+# Nové vlákno, které bude hrát zvuk saw_beep.
+# Desetkrát náhodně přehraje notu 37 nebo 49
+# s&nbsp;dvouvteřinovou pauzou.
+in_thread do
+	with_synth "saw_beep"
+	10.times do
+		if rand < 0.5
+			play 37
+		else
+			play 49
+		end
+		sleep 2
+	end
+end
+
+# Nové vlákno, které bude hrát zvuk pretty_bell.
+# Dvacetkrát přehraje notu 49 s&nbsp;jednovteřinovou pauzou.
+in_thread do
+	with_synth "pretty_bell"
+	20.times do
+		play 49
+		sleep 1
+	end
+end
+
+# Výsledkem bude, že každou vteřinu zahraje nota 49
+# z&nbsp;druhého vlákna a&nbsp;každou druhou vteřinu se k&nbsp;tomu
+# přidá nota 49 nebo 37 z&nbsp;prvního vlákna.</code></pre>

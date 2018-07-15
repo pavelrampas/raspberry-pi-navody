@@ -1,0 +1,71 @@
+{var $description = 'Program OMXPlayer pro přehrávání videa na Raspberry Pi.'}
+{var $title = 'OMXPlayer'}
+
+{var $ogurl = 'omxplayer'}
+{var $ogpublished = '2014-03-23T10:00:00+00:00'}
+
+{block content}
+<h2>OMXPlayer</h2>
+<p class="article-meta">
+	<strong>23.03.2014</strong>
+</p>
+<p>
+	Jedná se o&nbsp;multimediální přehrávač předinstalovaný v&nbsp;Raspbianu. Na rozdíl od
+	jiných zvládá plynule přehrávat video. Nemá ale moc funkcí, takže na hudbu se
+	hodí spíše <a href="http://www.mplayerhq.hu/">MPlayer</a>.
+	Výhodou je i&nbsp;to že přehrávání videa se spustí i&nbsp;v textovém režimu.
+	Klávesy pro ovládání se dají najít na oficiální stránce <a href="http://omxplayer.sconde.net/">Omxplayeru</a>.
+	Parametry a&nbsp;nastavení se pak dají zjistit příkazem <code>$ omxplayer -help</code>.
+</p>
+<h3>Základní ovládání</h3>
+<p>
+	Základem je přehrání jednoho video souboru. Důležitý je přepínač <code>-b</code>,
+	kterým se zapne černé pozadí okolo videa.
+</p>
+<pre><code>$ omxplayer -b video.avi</code></pre>
+<p>
+	Pokud má film titulky. Můžeme si nastavit jejich velikost a&nbsp;pozici.
+	Titulky je vhodné ukládat pod stejným názvem jako film aby se sami načetly.
+	Pokud se vám špatně zobrazují české znaky. Je potřeba změnit kódování souboru na UTF-8.
+	Stačí soubor otevřít v&nbsp;nějakém textovém editoru například Leafpad a&nbsp;při ukládání nastavit
+	požadované kódování.
+</p>
+<pre><code>$ omxplayer --font-size 50 --align center video.avi</code></pre>
+<h3>Přehrání celé složky videí</h3>
+<p>
+	Pokud chceme přehrát všechny videa z&nbsp;jedné složky. Musíme si připravit krátký
+	script, který to provede.
+</p>
+<ol>
+
+	<li>
+		<p>
+			Napřed si vytvoříme nový soubor s&nbsp;libovolným názvem.
+		</p>
+		<pre><code>$ nano ~/prehraj-videa.sh</code></pre>
+	</li>
+	<li>
+		<p>
+			Do souboru napíšeme následujících text. Soubor uložíme Ctrl+O
+			a&nbsp;zavřeme Ctrl+X.
+		</p>
+		<pre><code>#!/bin/sh
+FILEPATH="$@"
+for file in $FILEPATH/*; do
+	omxplayer -b --font-size 50 --align center "$file" > /dev/null
+done
+</code></pre>
+	</li>
+	<li>
+		<p>
+			Souboru pak nastavíme práva.
+		</p>
+		<pre><code>$ sudo chmod 755 ~/prehraj-videa.sh</code></pre>
+	</li>
+	<li>
+		<p>
+			A můžeme si přehrát celou složku videí.
+		</p>
+		<pre><code>$ ~/prehraj-videa.sh složka/</code></pre>
+	</li>
+</ol>

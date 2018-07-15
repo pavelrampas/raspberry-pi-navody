@@ -1,0 +1,94 @@
+{var $description = 'Minimální doporučené příslušenství pro Raspberry Pi a další doplňky.'}
+{var $title = 'Příslušenství'}
+
+{var $ogurl = 'prislusenstvi'}
+{var $ogpublished = '2014-02-23T10:00:00+00:00'}
+{var $ogimage = 'prislusenstvi/video-konektory.jpg'}
+
+{block content}
+<h2>Příslušenství</h2>
+<p class="article-meta">
+	<strong>23.02.2014</strong>
+</p>
+<h3 class="first">Minimum potřebné ke spuštění</h3>
+<h4>SD karta</h4>
+<p>
+	Základní věcí je paměťová karta na kterou budeme nahrávat operační systém.
+	Doporučené minimum je velikost 4&nbsp;GB s&nbsp;rychlostí class&nbsp;4. Podle mě je optimální
+	zvolit velikost 8&nbsp;GB s&nbsp;rychlostí class&nbsp;10. Při výběru karty je potřeba dávat
+	pozor na to aby s&nbsp;Raspberry Pi spolupracovala. To se dá ověřit pomocí seznamu na stránce
+	<a href="http://elinux.org/RPi_SD_cards">RPi SD cards</a>. Já používám kartu
+	<a href="http://www.czc.cz/sandisk-sdhc-ultra-8gb/119203/produkt">SanDisk Secure Digital Ultra 8GB</a>.
+	Její rychlost se pohybuje kolem 20MB/s, jak můžete vidět na obrázku.
+</p>
+<p>
+	<a href="{$basePath}/images/prislusenstvi/sandisk-secure-digital-ultra-8gb-class-10-crystaldiskmark.png">
+		<img src="{$basePath}/images/prislusenstvi/sandisk-secure-digital-ultra-8gb-class-10-crystaldiskmark.png" title="SanDisk Secure Digital Ultra 8GB" alt="SanDisk Secure Digital Ultra 8GB" class="img-responsive img-rounded center-block">
+	</a>
+</p>
+<br>
+<h4>Klávesnice</h4>
+<p>
+	Bez klávesnice se také neobejdeme. V podstatě lze využít jakoukoliv klávesnici
+	do USB. Také se často k&nbsp;Raspberry Pi používají menší bezdrátové klávesnice jejichž součástí je touchpad.
+	Podrobnosti ke klávesnicím jsou na <a href="http://elinux.org/RPi_USB_Keyboards">RPi USB Keyboards</a>.
+</p>
+<h4>Napájení</h4>
+<p>
+	Napájení se dá řešit různými způsoby. Proto jsem mu věnoval samostatnou <a href="{link Homepage:napajeni}">kapitolu</a>.
+</p>
+<h4>Monitor</h4>
+<p>
+	Různých monitorů, televizí a&nbsp;displejů se dá k&nbsp;Raspberry Pi připojit spoustu.
+	K dispozici jsou tři video výstupy. Kompozitní video (cinch) pomocí kterého můžeme
+	připojit starší televizi nebo různé malé monitory do aut, k&nbsp;bezpečnostním kamerám a&nbsp;další.
+	Druhý výstupem je HDMI přes které můžeme připojovat novější zařízení.
+	V případě že nemáte k&nbsp;dispozici žádný monitor s&nbsp;HDMI vstupem lze použít kabel,
+	který má na jednom konci HDMI a&nbsp;na druhém DVI. A pokud máte stejně jako já monitor
+	pouze s&nbsp;VGA vstupem budete potřebovat
+	<a href="http://www.czc.cz/delock-adapter-hdmi-a-samec-vga-samice/122714/produkt">adaptér</a>
+	pro převod z&nbsp;HDMI na VGA. Pro kutily má Raspberry Pi ještě
+	<a href="http://elinux.org/Rpi_Screens#Interfacing_to_non-monitor_LCD_panels">DSI konektor</a> pro připojení LCD displejů.
+</p>
+<p>
+	<a href="{$basePath}/images/prislusenstvi/video-konektory.jpg">
+		<img src="{$basePath}/images/prislusenstvi/video-konektory.jpg" title="video konektory" alt="video konektory" class="img-responsive img-rounded">
+	</a>
+</p>
+<h3>Další užitečné věci</h3>
+<h4>Myš</h4>
+<p>
+	Myš je zapotřebí pouze pokud chceme pracovat v&nbsp;grafické rozhraní a&nbsp;stejně
+	jako u&nbsp;klávesnice lze použít jakoukoliv myš do USB. Podrobnosti k&nbsp;myším jsou na
+	<a href="http://elinux.org/RPi_USB_Mouse_devices">RPi USB Mouse devices</a>.
+</p>
+<h4>Wi-Fi karta a&nbsp;síťový kabel</h4>
+<p>
+	Nejjednodušší způsob jak připojit Raspberry Pi do sítě je použít klasický síťový kabel.
+	V případě že se vám nechce tahat dráty budete si muset dokoupit USB Wi-Fi kartu.
+	Stejně jako u&nbsp;jiného příslušenství je třeba dávat pozor na kompatibilitu a&nbsp;řídit
+	se informacemi na Raspberry Pi Wiki v&nbsp;sekci
+	<a href="http://elinux.org/RPi_USB_Wi-Fi_Adapters">RPi USB Wi-Fi Adapters</a>. Já používám
+	kartu <a href="http://www.czc.cz/tp-link-tl-wn725n/110670/produkt">TP-LINK TL-WN725N</a>
+	a&nbsp;její instalaci se budu podrobněji věnovat v&nbsp;kapitole <a href="{link Homepage:wi-fi}">Wi-Fi</a>.
+</p>
+<h4>USB hub</h4>
+<p>
+	K dispozici jsou pouze dva USB porty, které zvládnou jenom energeticky méně náročná
+	zařízení jako je klávesnice nebo myš. Na jeden port připadá přibližně 140&nbsp;mA. Proto je potřeba
+	pro náročnější příslušenství používat samostatně napájený USB hub.
+	Obvykle se dělají 4-portové nebo 7-portové. Opět je k&nbsp;dispozici přehledná tabulka
+	<a href="http://elinux.org/RPi_Powered_USB_Hubs">RPi Powered USB Hubs</a>.
+	Především je třeba koukat na hodnoty napájecího adaptéru.
+	Přesto že by každý USB port měl umožňovat odběr až 500&nbsp;mA. Výrobci často používají
+	pouze 1&nbsp;A zdroje pro 4-portový hub a&nbsp;2&nbsp;A zdroje pro 7-portový hub. Takže při větším
+	množství připojených zařízení s&nbsp;velkým odběrem to nemusí stačit. Proto jsem si
+	vybral <a href="http://www.czc.cz/d-link-hi-speed-usb-2-0-7-port-hub/21504/produkt">D-Link Hi-Speed USB 2.0 7-Port Hub (DUB-H7)</a>, který má 3&nbsp;A adaptér.
+</p>
+<h4>Reproduktory a&nbsp;sluchátka</h4>
+<p>
+	Zvuk je možné z&nbsp;Raspberry Pi přenášet přes HDMI kabel. Pokud má monitor nebo televize vestavěné
+	reproduktory. V případě použití kabelu HDMI/DVI se zvuk nepřenáší. Jinak je k&nbsp;dispozici
+	klasický 3,5&nbsp;mm jack pro připojení libovolných sluchátek nebo reproduktorů
+	a&nbsp;pokud nemáte volnou zásuvky pro reproduktory dají se pořídit i&nbsp;s <a href="http://www.czc.cz/genius-sp-u115-prenosne-repro-usb-napajeni-cerne/95767/produkt">napájením z&nbsp;USB</a>.
+</p>

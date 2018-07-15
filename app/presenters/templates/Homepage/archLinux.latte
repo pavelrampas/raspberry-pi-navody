@@ -1,0 +1,229 @@
+{var $description = 'Operační systém Arch Linux pro jednodeskový počítač Raspberry Pi.'}
+{var $title = 'Arch Linux'}
+
+{var $ogurl = 'arch-linux'}
+{var $ogpublished = '2014-05-29T10:00:00+00:00'}
+{var $ogimage = 'arch-linux/arch-linux-lxde.png'}
+
+{block content}
+<h2>Arch Linux</h2>
+<p class="article-meta">
+	<strong>29.05.2014</strong>
+</p>
+<p>
+	<a href="https://www.archlinux.org/">Arch Linux</a> je nezávislá linuxová distribuce.
+	Vhodnější spíš pro pokročilejší uživatele. Po instalaci se nespustí žádný průvodce
+	nastavením a k dispozici je jenom textové rozhraní. Takže si každý může všechno udělat podle sebe.
+	To ale může být někdy složitější. Na rozdíl od systému
+	<a href="{link Homepage:pidora}">Pidora</a> mi Arch Linux připadá mnohem
+	víc podobný <a href="{link Homepage:raspbian}">Raspbianu</a>. Rozdílů jsem zaznamenal jenom pár.
+	Například při instalaci programů, protože Arch Linux používá vlastní balíčkovací systém Pacman.
+	Programy se ale dají nainstalovat převážně stejné jako v Raspbianu. Třeba i OMXPlayer.
+</p>
+<h3>Instalace a nastavení</h3>
+<p>
+	Instalovat můžeme buď pomocí <a href="{link Homepage:noobs}">NOOBS</a> nebo
+	ze samostatného souboru stejně jako ostatní systémy, tak jak je to popsáno v kapitole
+	<a href="{link Homepage:priprava-sd-karty}">Příprava SD karty</a>.
+	Výchozí uživatel po prvním spuštění je <em><strong>root</strong></em> a heslo pro přihlášení je
+	také <em><strong>root</strong></em>. Pro některá z následujících nastavení a instalace programů
+	bude zapotřebí mít Raspberry Pi připojené k internetu.
+</p>
+<ol><li>
+		<h4>Změna hesla</h4>
+		<p>
+			Hned po prvním přihlášení je vhodné změnit si heslo na nějaké vlastní.
+		</p>
+		<pre><code>$ passwd root</code></pre>
+	</li>
+	<li>
+		<h4>SSH</h4>
+		<p>
+			SSH je povolené hned po spuštění a přidělená IP adresa se dá zjistit příkazem <code>ifconfig</code>.
+		</p>
+	</li>
+	<li>
+		<h4>Nastavení času</h4>
+		<p>
+			Stačí smazat výchozí nastavení časové zóny pro Londýn a vytvořit nové nastavení
+			s časovou zónou Prahy.
+		</p>
+		<pre><code>$ rm /etc/localtime
+$ ln -s /usr/share/zoneinfo/Europe/Prague /etc/localtime</code></pre>
+	</li>
+	<li>
+		<h4>Nastavení češtiny</h4>
+		<p>
+			Požadovaný jazyk zapneme úpravou souboru <em>/etc/locale.gen</em>.
+		</p>
+		<pre><code>$ nano /etc/locale.gen</code></pre>
+		<p>
+			V tomto souboru je potřeba
+			odkomentovat <em>(smazat mřížku na začátku řádky)</em> u řádky s češtinou
+			<em><strong><nobr>cs_CZ.UTF-8 UTF-8</nobr></strong></em>. Soubor pak uložíme zkratkou
+			Ctrl+O a zavřeme zkratkou Ctrl+X.
+			Když máme odkomentováno necháme vygenerovat soubory s češtinou.
+		</p>
+		<pre><code>$ locale-gen
+</code></pre>
+		<p>
+			Nakonec vytvoříme konfigurační soubor <em>/etc/locale.conf</em>.
+
+		</p>
+		<pre><code>$ nano /etc/locale.conf</code></pre>
+		<p>
+			Do tohoto souboru napíšeme následující dvě řádky. Soubor pak uložíme zkratkou
+			Ctrl+O a zavřeme zkratkou Ctrl+X.
+		</p>
+		<pre><code>LANG=cs_CZ.UTF-8
+LC_COLLATE=C</code></pre>
+	</li>
+	<li>
+		<h4>Nastavení klávesnice</h4>
+		<p>
+			Vytvoříme konfigurační soubor <em>/etc/vconsole.conf</em>.
+		</p>
+		<pre><code>$ nano /etc/vconsole.conf</code></pre>
+		<p>
+			Do souboru pak napíšeme následující text, který zapne českou klávesnici s písmenem Z nahoře.
+		</p>
+		<pre><code>KEYMAP=cz-qwertz</code></pre>
+	</li>
+	<li>
+		<h4>Kontrola nastavení</h4>
+		<p>
+			Nastavení češtiny a časové zóny se dají zkontrolovat příkazem.
+		</p>
+		<pre><code>$ localectl status</code></pre>
+		<p>Tento příkaz by měl vypsat něco takového.</p>
+		<pre><code>System Locale: LANG=cs_CZ.UTF-8
+			   LC_COLLATE=C
+	VC Keymap: cz-qwertz
+   X11 Layout: n/a</code></pre>
+	</li>
+	<li>
+		<h4>Jméno počítače</h4>
+		<p>
+			Jméno počítače můžeme změnit v souboru <em>/etc/hostname</em>.
+			Výchozí jméno je <em>alarmpi</em>, které jsem si změnil na <em>raspberrypi</em>.
+		</p>
+		<pre><code>$ nano /etc/hostname</code></pre>
+	</li>
+	<li>
+		<h4>Přetaktování</h4>
+		<p>
+			Přetaktování a nastavení dalších parametrů Raspberry Pi se stejně jako u jiných
+			systému provádí v souboru <em><strong>/boot/config.txt</strong></em>. V souboru už
+			jsou připraveny zakomentované varianty nastavení pro zvýšení výkonu. Podrobný popis všech
+			nastavení v tomto souboru najdete na Raspberry Pi Wiki v sekci
+			<a href="http://elinux.org/RPiconfig">RPiconfig</a>.
+		</p>
+	</li>
+	<li>
+		<h4>Aktualizace</h4>
+		<p>
+			Aktualizace systému.
+		</p>
+		<pre><code>$ pacman -Syu</code></pre>
+	</li>
+	<li>
+		<h4>Restart</h4>
+		<p>
+			Aby se projevily všechny změny nastavení je potřeba provést restart systému.
+		</p>
+		<pre><code>$ reboot</code></pre>
+</ol>
+<h3>Přidání uživatele</h3>
+<ol>
+	<li>
+		<h4>Instalace sudo</h4>
+		<p>
+			Aby mohl nový uživatel používat práva roota je třeba doinstalovat sudo.
+		</p>
+		<pre><code>$ pacman -S sudo</code></pre>
+		<p>
+			Po instalaci je třeba otevřít soubor s nastavením <em>visudo</em>.
+		</p>
+		<pre><code>$ EDITOR=nano visudo</code></pre>
+		<p>
+			V tomto souboru stačí najít následující řádek, který je skoro na konci
+			a odkomentovat ho. Soubor pak uložíme zkratkou Ctrl+O a zavřeme zkratkou Ctrl+X.
+		</p>
+		<pre><code>%sudo ALL=(ALL) NOPASSWD: ALL</code></pre>
+		<p>
+			Nakonec ještě vytvořím novou skupinu sudo.
+		</p>
+		<pre><code>$ groupadd sudo</code></pre>
+	</li>
+	<li>
+		<h4>Nový uživatel "pi"</h4>
+		<p>
+			Teď můžeme jediným příkazem vytvořit nového uživatele. Jméno uživatele je
+			na konci příkazu. V tomto případě jde o uživatele <em>pi</em>.
+		</p>
+		<pre><code>$ useradd -m -g users -s /bin/bash -G audio,games,lp,optical,power,scanner,storage,video,sudo pi</code></pre>
+		<p>
+			Když máme uživatele vytvořeného, tak mu ještě nastavíme heslo.
+		</p>
+		<pre><code>$ passwd pi</code></pre>
+	</li>
+</ol>
+<h3>Grafické prostředí</h3>
+<p>
+	V této části už pracuji jako nový uživatel <em>pi</em>. Pokud stále pracujete
+	jako uživatel <em>root</em>, tak pište příkazy bez <em>sudo</em> na začátku.
+</p>
+<ol>
+	<li>
+		<h4>Xork a ovladače</h4>
+		<p>
+			Napřed nainstalujeme součásti pro Xork a grafický ovladač.
+		</p>
+		<pre><code>$ sudo pacman -S xorg-server xorg-xinit xorg-utils xorg-server-utils
+$ sudo pacman -S xf86-video-fbdev</code></pre>
+	</li>
+	<li>
+		<h4>LXDE</h4>
+		<p>
+			Jako grafické prostředí jsem vybral LXDE.
+		</p>
+		<pre><code>$ sudo pacman -S lxde</code></pre>
+		<p>
+			Když máme LXDE nainstalované, tak si v domácím adresáři vytvoříme soubor <em>.xinitrc</em>.
+		</p>
+		<pre><code>$ nano ~/.xinitrc</code></pre>
+		<p>
+			Do tohoto souboru vložíme následující text.
+			Soubor pak uložíme zkratkou Ctrl+O a zavřeme zkratkou Ctrl+X.
+		</p>
+		<pre><code>exec startlxde</code></pre>
+	</li>
+	<li>
+		<h4>Rozložení klávesnice</h4>
+		<p>
+			Pro grafické prostředí je třeba znovu nastavit rozložení klávesnice
+			v souboru <em><nobr>/etc/X11/xorg.conf.d/10-keyboard.conf</nobr></em>.
+		</p>
+		<pre><code>$ sudo nano /etc/X11/xorg.conf.d/10-keyboard.conf</code></pre>
+		<p>
+			Do souboru je třeba vložit následující blok textu.
+		</p>
+		<pre><code>Section "InputClass"
+		Identifier "system-keyboard"
+		MatchIsKeyboard "on"
+		Option "XkbLayout" "cz"
+		Option "XkbModel" "pc105"
+		Option "XkbVariant" "bksl"
+		Option "XkbOptions" "grp:alt_shift_toggle"
+EndSection</code></pre>
+	</li><li>
+		<h4>Spuštění</h4>
+		<p>Nakonec si můžeme spustit grafické prostředí.</p>
+		<pre><code>$ startx</code></pre>
+		<p>
+			<a href="{$basePath}/images/arch-linux/arch-linux-lxde.png">
+				<img src="{$basePath}/images/arch-linux/arch-linux-lxde.png" title="Arch Linux" alt="Arch Linux" class="img-responsive img-rounded center-block">
+			</a>
+		</p>
+	</li>
+</ol>

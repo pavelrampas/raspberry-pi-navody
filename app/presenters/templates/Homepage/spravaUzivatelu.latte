@@ -1,0 +1,66 @@
+{var $description = 'Správa uživatelů v operačním systému Raspbian. Vytváření, mazání a přidávání práv uživatelům.'}
+{var $title = 'Správa uživatelů'}
+
+{var $ogurl = 'sprava-uzivatelu'}
+{var $ogpublished = '2014-06-16T10:00:00+00:00'}
+
+{block content}
+<h2>Správa uživatelů</h2>
+<p class="article-meta">
+	<strong>16.06.2014</strong>
+</p>
+<p>
+   Pokud s&nbsp;Raspberry Pi pracuje více lidí, může se hodit mít pro každého vlastní účet
+   s&nbsp;vlastním domovským adresářem. Je to přehlednější a&nbsp;uživatelé si omylem nemažou
+   soubory. Navíc může s&nbsp;Raspberry Pi pracovat více uživatelů najednou. Třeba pomocí
+   <a href="{link Homepage:ssh}">vzdáleného přístupu</a>.
+</p>
+<h3>Přidání nového uživatele</h3>
+<p>
+	Napřed se přihlásíme jako výchozí uživatel <em>pi</em> pomocí hesla <em>raspberry</em>
+	a&nbsp;protože při vytváření nového uživatele mu rovnou zadáme do jakých uživatelských skupin
+	má patřit, tak si vypíšeme v&nbsp;jakých skupinách je zařazen uživatel <em>pi</em>.
+</p>
+<pre><code>$ groups pi</code></pre>
+<p>
+	Teď vytvoříme nového uživatele. Parametrem <em>-m</em> určíme aby se mu
+	vytvořil jeho domovský adresář v&nbsp;adresáři <em>home</em>. Za parametr <em>-G</em>
+	pak vypíšeme všechny skupiny ve kterých je uživatel <em>pi</em>, kromě skupin
+	<em>pi</em> a&nbsp;<em>sudo</em>. Úplně na konci je pak jméno nového uživatele
+	v&nbsp;tomto případě <em>pepik</em>.
+</p>
+<pre><code>$ sudo useradd -m -G adm,dialout,cdrom,audio,video,plugdev,games,users,netdev,input,spi,gpio pepik</code></pre>
+<p>
+	Novému uživateli ještě musíme zadat heslo a&nbsp;pak už se můžeme přihlásit jeho
+	uživatelským jménem.
+</p>
+<pre><code>$ sudo passwd pepik</code></pre>
+<h3>Přidání práv roota uživateli</h3>
+<p>
+	Aby jsme mohli uživateli přidat práva roota musíme se přihlásit jako uživatel <em>pi</em>.
+	Práva roota umožní uživateli používat příkazy se <em>sudo</em> na začátku.
+	Takže například instalovat programy.
+</p>
+<p>
+   Uživatele musíme dodatečně přidat do skupiny <em>sudo</em>.
+</p>
+<pre><code>$ sudo usermod -a -G sudo pepik</code></pre>
+<p>
+	Ještě je vhodné upravit nastavení v&nbsp;souboru <em>/etc/sudoers.tmp</em> aby
+	uživatel nemusel při každém použítí <em>sudo</em> zadávat znovu své heslo.
+</p>
+<pre><code>$ sudo visudo</code></pre>
+<p>
+	Na konec souboru dopíšeme následující řádku. Stejná řádka už je tam napsaná
+	pro uživatele <em>pi</em>. Soubor pak uložíme zkratkou Ctrl+O a&nbsp;zavřeme zkratkou Ctrl+X.
+</p>
+<pre><code>pepik ALL=(ALL) NOPASSWD: ALL</code></pre>
+<p>
+	Nový uživatel <em>pepik</em> teď bude mít stejná práva jako uživatel <em>pi</em>.
+</p>
+<h3>Smazání uživatele</h3>
+<p>
+   Uživatele můžeme smazat jednoduše i&nbsp;s jeho domovským adresářem. Smazání adresáře
+   způsobí parametr <em>-r</em>.
+</p>
+<pre><code>$ sudo userdel -r pepik</code></pre>

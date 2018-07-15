@@ -1,0 +1,64 @@
+{var $description = 'Nastavení SFTP pomocí programu FileZilla pro přenášení souborů mezi počítačem a Raspberry Pi.'}
+{var $title = 'SFTP'}
+
+{var $ogurl = 'sftp'}
+{var $ogpublished = '2014-03-09T10:00:00+00:00'}
+{var $ogimage = 'sftp/filezilla-login.png'}
+
+{block content}
+<h2>SFTP</h2>
+<p class="article-meta">
+	<strong>09.03.2014</strong>
+</p>
+<p>
+	Pokud potřebujeme přenášet soubory mezi Rapberry Pi a&nbsp;jinými počítači můžeme
+	k&nbsp;tomu využít SFTP. Já k&nbsp;tomu používám program FileZilla, ale použít se dá jakýkoliv
+	jiný program, který SFTP podporuje. Samozřejmě potřebujeme mít
+	Raspberry Pi připojené do sítě nebo přímo k&nbsp;jinému počítači.
+	Postupovat můžeme podle kapitoly <a href="{link Homepage:wi-fi}">Wi-Fi</a> nebo <a href="{link Homepage:ethernet}">Ethernet</a>.
+</p>
+<h3>Nastavení Raspberry Pi</h3>
+<ol>
+	<li>
+		<p>
+			Povolíme SSH v&nbsp;konfiguraci, pokud už jsme tak už někdy dřív neučinili.
+			SSH najdeme v&nbsp;<b>Advanced Options</b>.
+		</p>
+		<pre><code>$ sudo raspi-config</code></pre>
+	</li>
+	<li>
+		<p>
+			Pak už si jenom zjistíme ip adresu.
+		</p>
+		<pre><code>$ ifconfig</code></pre>
+	</li>
+</ol>
+<h3>Připojení pomocí FileZilly</h3>
+<ol>
+	<li>
+		<p>
+			Na počítači ze kterého budeme k&nbsp;Raspberry Pi přistupovat si stáhneme program
+			<a href="https://filezilla-project.org/">FileZilla</a> a&nbsp;nainstalujeme ho.
+			Spustíme program a&nbsp;v levém horním rohu vybereme <b>Otevřít správce míst</b>.
+		</p>
+		<p>
+			<a href="{$basePath}/images/sftp/filezilla.png">
+				<img src="{$basePath}/images/sftp/filezilla.png" title="filezilla" alt="filezilla" class="img-responsive img-rounded center-block">
+			</a>
+		</p>
+		<br>
+	</li>
+	<li>
+		<p>
+			Vybereme možnost <b>Nové místo</b> a&nbsp;do kolonky Hostitel zadáme IP adresu Raspberry Pi.
+			Protokol zvolíme SFTP a&nbsp;způsob přihlašování normální. Nakonec vyplníme naše
+			přihlašovací jméno a&nbsp;heslo, kterým se Raspberry Pi přihlašujeme a&nbsp;můžeme kliknout na Připojit.
+		</p>
+		<p>
+			<a href="{$basePath}/images/sftp/filezilla-login.png">
+				<img src="{$basePath}/images/sftp/filezilla-login.png" title="FileZilla přihlášení" alt="FileZilla přihlášení" class="img-responsive img-rounded center-block">
+			</a>
+		</p>
+		<br>
+	</li>
+</ol>

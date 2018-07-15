@@ -1,0 +1,14 @@
+{capture $description}{$posts->content|striptags|truncate:140}{/capture}
+{capture $title}{$posts->title|noescape}{/capture}
+
+{var $ogurl = $posts->id . '-' . $posts->title}
+{var $ogpublished = $posts->date .'T10:00:00+00:00'}
+{var $news = ''}
+
+{block content}
+<div class="news">
+	<h2>{$posts->title|noescape}</h2>
+	<div class="date">{$posts->date|date:'d.m.Y'}</div>
+	<div class="content">{$posts->content|noescape}</div>
+</div>
+<p><a href="{link Homepage:default}#novinky">zpět na seznam novinek a zajímavostí</a></p>

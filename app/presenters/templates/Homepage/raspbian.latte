@@ -1,0 +1,73 @@
+{var $description = 'Instalace a konfigurace operačního systému Raspbian pro Raspberry Pi.'}
+{var $title = 'Raspbian'}
+
+{var $ogurl = 'raspbian'}
+{var $ogpublished = '2014-02-23T10:00:00+00:00'}
+{var $ogmodified = '2014-12-29T10:00:00+00:00'}
+{var $ogimage = 'raspbian/raspbian-plocha-nova.png'}
+
+{block content}
+<h2>Raspbian</h2>
+<p class="article-meta">
+	<strong>23.02.2014</strong> | Aktualizace: 29.12.2014 | Systém: Raspbian 2014-24-12
+</p>
+<p>
+	Napřed si připravíme SD kartu podle kapitoly <a href="{link Homepage:priprava-sd-karty}">Příprava SD karty</a>. Pak stačí kartu
+	zasunout do Raspberry Pi a&nbsp;připojit napájení. Hned po nastartování se nám otevře konfigurace.
+	Ta se dá později znova otevřít příkazem <code>$ sudo raspi-config</code> a&nbsp;změnit.
+	Pro pohyb v&nbsp;konfiguračním programu se používají šipky. Pro zaškrtávání možností slouží mezerník
+	a&nbsp;tabulátorem se přeskakuje mezi nabídkami. Co všechno si tedy můžeme v&nbsp;konfiguraci nastavit.
+</p>
+<ol>
+	<li><strong>Expand Filesystem</strong> – Po nakopírování na SD kartu využívá Raspbian pouze malou část celkové kapacity, necelé 3&nbsp;GB. Touto volbou bude využívat celou kapacitu karty.</li>
+	<li><strong>Change User Password</strong> – Změna hesla k&nbsp;účtu. Výchozí jméno je "pi" a&nbsp;heslo "raspberry". Doporučuje se změna hesla hned při prvním spuštění.</li>
+	<li><strong>Enable Boot to Desktop/Scratch</strong> – Nastavení jestli se má Raspbian spouštět v&nbsp;grafickém režimu, textovém režimu nebo jestli se má spustit v&nbsp;režimu aplikace Scratch.</li>
+	<li>
+		<strong>Internationalisation Options</strong> – Zde se skrývají tři volby.
+		<ul>
+			<li><strong>Change Locale</strong> - Nastavení jazyka. Je vhodné ponechat angličtinu a&nbsp;přidat češtinu „cs_CZ.UTF-8 UTF-8”, kterou pak stačí nastavit jako výchozí. V případě že nebude někde dostupný překlad použije se angličtina.</li>
+			<li><strong>Change Timezone</strong> - Volba časového pásma. U nás volba Evropa a&nbsp;pak Praha.</li>
+			<li><strong>Change Keyboard Layout</strong> - Rozložení klávesnice. Typ klávesnice nechávám na vybraný variantě „Generic 105-key (Intl) PC“. Rozložení jsem pak zvolil „Czech – Czech (with <\|> key)“, které má klávesu Z nahoře. Pak už stačí projít nastavení některých speciálních kláves a&nbsp;je to.</li>
+		</ul>
+	</li>
+	<li><strong>Enable Camera</strong> – Povolení originální Raspberry Pi kamery. Pokud jí máte.</li>
+	<li><strong>Add to Rastrack</strong> – Přidání vašeho Raspberry na <a href="http://rastrack.co.uk/">mapu.</a></li>
+	<li><strong>Overclock</strong> – Možnost zvýšení výkonu. Já běžně používám variantu s&nbsp;frekvencí procesoru 900&nbsp;MHz.</li>
+	<li>
+		<strong>Advanced Options</strong> – Několik dalších nastavení.
+		<ul>
+			<li><strong>Overscan</strong> – Nastavení černých okrajů obrazovky.</li>
+			<li><strong>Hostname</strong> – Jméno Raspberry Pi v&nbsp;síti. Výchozí je "raspberrypi".</li>
+			<li><strong>Memory Split</strong> – Nastavení kolik paměti se má využívat pro GPU.</li>
+			<li><strong>SSH</strong> – Vypnutí a&nbsp;zapnutí vzdáleného přístupu.</li>
+			<li><strong>SPI</strong> – Nastavení pro PiFace.</li>
+			<li><strong>I2C</strong> – Vypnutí a&nbsp;zapnutí automatického načtení I2C modulu.</li>
+			<li><strong>Serial</strong> – Vypnutí a&nbsp;zapnutí zpráv přes sériové spojení.</li>
+			<li><strong>Audio</strong> – Volba který zvukový výstup se má používat.</li>
+			<li><strong>Update</strong> – Aktualizace tohoto konfiguračního programu.</li>
+		</ul>
+	</li>
+	<li><strong>About raspi-config</strong> – Pár informací o&nbsp;tomto konfiguračním programu. </li>
+</ol>
+<p>
+	Některá další nastavení se dají později upravit pomocí souboru <a href="http://elinux.org/RPiconfig">config.txt</a>, který se dá otevřít pro editaci
+	příkazem <code>$ sudo nano /boot/config.txt</code>. Určitě se o&nbsp;některých nastaveních v&nbsp;tomto souboru zmíním v&nbsp;dalších kapitolách.
+	Po dokončení nastavení pomocí raspi-config vybereme možnost Finish a&nbsp;pokud jsme zvolili spouštění v&nbsp;grafickém režimu, naběhne
+	nám plocha kterou můžete vidět na obrázku.
+</p>
+<br>
+<p>
+	<a href="{$basePath}/images/raspbian/raspbian-plocha-nova.png">
+		<img src="{$basePath}/images/raspbian/raspbian-plocha-nova.png" title="nová plocha Raspbianu" alt="nová plocha Raspbianu" class="img-responsive img-rounded center-block">
+	</a>
+</p>
+<br>
+<p>
+	U starších verzí Raspbianu vypadala plocha jinak a musím říct, že nová verze s panelem nahoře se mi moc líbí.
+</p>
+<br>
+<p>
+	<a href="{$basePath}/images/raspbian/raspbian-plocha.png">
+		<img src="{$basePath}/images/raspbian/raspbian-plocha.png" title="stará plocha Raspbianu" alt="stará plocha Raspbianu" class="img-responsive img-rounded center-block">
+	</a>
+</p>

@@ -1,0 +1,189 @@
+{var $description = 'Instalace Wi-Fi karty TP-LINK TL-WN725N a konfigurace Wi-Fi sítě na Raspbianu.'}
+{var $title = 'Wi-Fi'}
+
+{var $ogurl = 'wi-fi'}
+{var $ogpublished = '2014-02-23T10:00:00+00:00'}
+{var $ogmodified = '2014-10-19T10:00:00+00:00'}
+{var $ogimage = 'wi-fi/wpa-gui-1.png'}
+
+{block content}
+<h2>Wi-Fi</h2>
+<p class="article-meta">
+	<strong>23.02.2014</strong> | Aktualizace: 19.10.2014 | Systém: Raspbian 2014-09-09
+</p>
+<h3 class="first">Ovladače</h3>
+<p>
+	Napřed bude pravděpodobně potřeba nainstalovat ovladače naší Wi-Fi karty.
+	Já mám <a href="http://www.czc.cz/tp-link-tl-wn725n/110670/produkt">TP-LINK TL-WN725N</a>
+	takže popíšu postup její instalace. Vycházel jsem
+	z&nbsp;<a href="http://www.raspberrypi.org/phpBB3/viewtopic.php?p=462982">tohoto návodu</a>.
+	Pokud máte jinou Wi-Fi kartu můžete zkusit hledat na
+	<a href="http://elinux.org/RPi_USB_Wi-Fi_Adapters">RPi USB Wi-Fi Adapters</a>.
+</p>
+<h3>Instalace ovladačů TP-LINK TL-WN725N</h3>
+<ol>
+	<li>
+		<p>
+			Nejprve připojíme Wi-Fi a&nbsp;zapneme Raspberry Pi.
+			Doporučuje se aktualizace systému, ale není to nutné.
+		</p>
+		<pre>
+<code>$ sudo apt-get update
+$ sudo apt-get upgrade</code></pre>
+	</li>
+	<li>
+		<p> Pak zjistíme verzi jádra.</p>
+		<pre><code>$ uname -a</code></pre>
+	</li>
+	<li>
+		<p>
+			Na <a href="http://www.raspberrypi.org/phpBB3/viewtopic.php?p=462982">fóru</a>
+			si najdeme verzi ovladačů odpovídající našemu jádru a&nbsp;stáhneme je následujícím příkazem,
+			ve kterém písmena <b>xyyzz</b> nahradíme čísly ovladačů. Pokud nemáme Raspberry Pi
+			připojené k&nbsp;internetu stáhneme si ovladače na jiném počítači a&nbsp;do Raspberry Pi
+			je přeneseme třeba na flash disku.
+		</p>
+		<pre><code>$ wget https://dl.dropboxusercontent.com/u/80256631/8188eu-201xyyzz.tar.gz</code></pre>
+	</li>
+	<li>
+		<p>Rozbalíme stažený soubor.</p>
+		<pre><code>$ tar -zxvf 8188eu-201xyyzz.tar.gz</code></pre>
+	</li>
+	<li>
+		<p>Nainstalujeme ovladače.</p>
+		<pre>
+<code>$ sudo install -p -m 644 8188eu.ko /lib/modules/$(uname -r)/kernel/drivers/net/wireless
+$ sudo insmod /lib/modules/$(uname -r)/kernel/drivers/net/wireless/8188eu.ko
+$ sudo depmod -a</code></pre>
+	</li>
+	<li>
+		<p>Nakonec Raspberry Pi restartujeme.</p>
+		<pre><code>$ sudo reboot</code></pre>
+	</li>
+</ol>
+<h3>Řešení problémů</h3>
+<p>
+	Pokud by ovladače nefungovaly je možné zkusit aktualizovat jádro a&nbsp;nainstalovat
+	odpovídající verzi ovladačů. Systém a&nbsp;jádro lze aktualizovat příkazem.
+</p>
+<pre><code>$ sudo rpi-update</code></pre>
+<h3>Nastavení připojení k&nbsp;Wi-Fi síti v&nbsp;grafickém režimu</h3>
+<ol>
+	<li>
+		<p>
+			Nejjednodušší způsob jak nastavit připojení k&nbsp;Wi-Fi síti je použít program
+			WiFi Config v&nbsp;grafickém prostředí Raspbianu. Program spustíme kliknutím na černobílou ikonu.
+		</p>
+		<p>
+			<a href="{$basePath}/images/wi-fi/wifi-config.png">
+				<img src="{$basePath}/images/wi-fi/wifi-config.png" title="WiFi Config" alt="WiFi Config" class="img-responsive img-rounded center-block">
+			</a>
+		</p>
+		<br>
+	</li>
+	<li>
+		<p>
+			Pokud v&nbsp;kolonce Adapter nic není tak to znamená, že nebyla nalezena žádná Wi-Fi karta.
+			Důvodem můžou být ovladače. Pokud je vše v&nbsp;pořádku stiskneme Scan.
+		</p>
+		<p>
+			<a href="{$basePath}/images/wi-fi/wpa-gui-1.png">
+				<img src="{$basePath}/images/wi-fi/wpa-gui-1.png" title="wpa_gui" alt="wpa_gui" class="img-responsive img-rounded center-block">
+			</a>
+		</p>
+		<br>
+	</li>
+	<li>
+		<p>
+			Otevře se nám okno se seznamem dostupných sítí. Dvojklikem vybereme tu ke které se chceme připojit.
+		</p>
+		<p>
+			<a href="{$basePath}/images/wi-fi/wpa-gui-2.png">
+				<img src="{$basePath}/images/wi-fi/wpa-gui-2.png" title="wpa_gui" alt="wpa_gui" class="img-responsive img-rounded center-block">
+			</a>
+		</p>
+		<br>
+	</li>
+	<li>
+		<p>
+			V okně s&nbsp;nastavením připojení by měly být některé kolonky už vyplněné.
+			Do pole PSK dopíšeme heslo k&nbsp;připojení a&nbsp;potvrdíme tlačítkem Add.
+		</p>
+		<p>
+			<a href="{$basePath}/images/wi-fi/wpa-gui-3.png">
+				<img src="{$basePath}/images/wi-fi/wpa-gui-3.png" title="wpa_gui" alt="wpa_gui" class="img-responsive img-rounded center-block">
+			</a>
+		</p>
+		<br>
+	</li>
+	<li>
+		<p>
+			Následně by mělo být vidět, že došlo k&nbsp;připojení a&nbsp;v posledním řádku vidíme přidělenou IP adresu.
+		</p>
+		<p>
+			<a href="{$basePath}/images/wi-fi/wpa-gui-4.png">
+				<img src="{$basePath}/images/wi-fi/wpa-gui-4.png" title="wpa_gui" alt="wpa_gui" class="img-responsive img-rounded center-block">
+			</a>
+		</p>
+	</li>
+</ol>
+<h3>Nastavení připojení k&nbsp;Wi-Fi síti v&nbsp;textovém režimu</h3>
+<ol>
+	<li>
+		<p>
+			Druhou možností je nastavit připojení ručně v&nbsp;textovém režimu.
+			Napřed si otevřeme soubor <b>interfaces</b>.
+		</p>
+		<pre><code>$ sudo nano /etc/network/interfaces</code></pre>
+	</li>
+	<li>
+		<p>
+			V souboru si najdeme řádku <b>wpa-roam</b>. Budeme potřebovat soubor, který
+			je v&nbsp;řádce uveden. Z editace souboru vyskočíme zkratkou Ctrl+X.
+		</p>
+		<p>
+			<a href="{$basePath}/images/wi-fi/interfaces.png">
+				<img src="{$basePath}/images/wi-fi/interfaces.png" title="soubor interfaces" alt="soubor interfaces" class="img-responsive img-rounded center-block">
+			</a>
+		</p>
+		<br>
+	</li>
+	<li>
+		<p>
+			Otevřeme si soubor <b>wpa_supplicant.conf</b>. Jeho jméno a&nbsp;umístnění jsme zjistili v&nbsp;předchozím kroku.
+		</p>
+		<pre><code>$ sudo nano /etc/wpa_supplicant/wpa_supplicant.conf</code></pre>
+	</li>
+	<li>
+		<p>
+			Do souboru je potřeba doplnit připojení <b>network</b>. Soubor pak uložíme zkratkou
+			Ctrl+O a&nbsp;zavřeme Ctrl+X.
+			Pokud nevíte SSID sítě nebo jiné parametry můžete použít příkaz <code>sudo iwlist scan</code>.
+		</p>
+		<p>
+			<a href="{$basePath}/images/wi-fi/wpa-supplicant.png">
+				<img src="{$basePath}/images/wi-fi/wpa-supplicant.png" title="soubor wpa_supplicant" alt="soubor wpa_supplicant" class="img-responsive img-rounded center-block">
+			</a>
+		</p>
+		<br>
+
+		<p>
+			<a href="{$basePath}/images/wi-fi/iwlist-scan.png">
+				<img src="{$basePath}/images/wi-fi/iwlist-scan.png" title="iwlist scan" alt="iwlist scan" class="img-responsive img-rounded center-block">
+			</a>
+		</p>
+		<br>
+	</li>
+	<li>
+		<p>
+			Nakonec si můžeme zobrazit informace o&nbsp;připojení a&nbsp;naší IP adresu.
+		</p>
+		<pre><code>$ ifconfig</code></pre>
+		<p>
+			<a href="{$basePath}/images/wi-fi/ifconfig.png">
+				<img src="{$basePath}/images/wi-fi/ifconfig.png" title="ifconfig" alt="ifconfig" class="img-responsive img-rounded center-block">
+			</a>
+		</p>
+		<br>
+	</li>
+</ol>
