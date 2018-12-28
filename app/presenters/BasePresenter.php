@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Presenters;
 
@@ -6,7 +7,7 @@ use Nette;
 
 abstract class BasePresenter extends Nette\Application\UI\Presenter
 {
-	const MODEL_NEWS = __DIR__ . '/../model/news.json';
+	public const MODEL_NEWS = __DIR__ . '/../model/news.json';
 
 
 	/**

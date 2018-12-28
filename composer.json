@@ -20,6 +20,17 @@
 	"scripts": {
         "less": [
             "node_modules/less/bin/lessc less/import.less --autoprefix --clean-css > www/css/style.css"
-        ]
-    }
+        ],
+		"test": [
+			"vendor/bin/phpstan --ansi analyse -l 5 -c phpstan.neon app",
+			"php vendor/nette/code-checker/code-checker -d app --short-arrays",
+			"vendor/bin/ecs --ansi check app --config vendor/nette/coding-standard/coding-standard-php71.yml"
+		]
+    },
+	"require-dev": {
+		"phpstan/phpstan": "^0.10.6",
+		"phpstan/phpstan-nette": "^0.10.1",
+		"nette/coding-standard": "^2.0",
+		"nette/code-checker": "^3.0"
+	}
 }

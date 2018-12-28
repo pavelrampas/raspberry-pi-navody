@@ -1,0 +1,12 @@
+parameters:
+	reportUnmatchedIgnoredErrors: false
+	bootstrap: app/bootstrap.php
+	ignoreErrors:
+		- '#Access to an undefined property Nette\\Database\\Table\\IRow::.*#'
+		- '#Access to an undefined property Nette\\Database\\Table\\ActiveRow::.*#'
+		- '#Access to an undefined property Nette\\Application\\UI\\ITemplate::.*#'
+	autoload_directories:
+		- app
+	includes:
+		- vendor/phpstan/phpstan-nette/extension.neon
+		- vendor/phpstan/phpstan-nette/rules.neon

@@ -23,3 +23,11 @@ Sputit komiplaci přípraveným příkazem přes Composer.
 ```
 composer less
 ```
+
+## Testování kódu
+
+Kontrola kódu pomocí phpstan, nette/coding-standard, nette/code-checker
+
+```
+composer test
+```
