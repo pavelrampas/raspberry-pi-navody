@@ -1,0 +1,30 @@
+{
+	"name": "Raspberry Pi návody",
+	"short_name": "RPi návody",
+	"icons": [{
+			"src": "favicon.png",
+			"type": "image/png",
+			"sizes": "32x32"
+		},
+		{
+			"src": "favicon-96x96.png",
+			"type": "image/png",
+			"sizes": "96x96"
+		},
+		{
+			"src": "favicon-192x192.png",
+			"type": "image/png",
+			"sizes": "192x192"
+		},
+		{
+			"src": "favicon-512x512.png",
+			"type": "image/png",
+			"sizes": "512x512"
+		}
+	],
+	"start_url": "/",
+	"scope": "/",
+	"display": "standalone",
+	"background_color": "#BB0000",
+	"theme_color": "#BB0000"
+}
