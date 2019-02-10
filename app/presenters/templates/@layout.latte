@@ -34,6 +34,7 @@
 					{include content}
 				</div>
 				<div class="col-sm-4 hidden-print nav">
+					<h2>Menu</h2>
 					<h3 class="first">Hardware</h3>
 					<ul>
 						<li><a href="{link Homepage:raspberry-pi}">Raspberry Pi</a></li>
@@ -92,7 +93,7 @@
 				<br>2014-{date('Y')}
 			</div>
 		</div>
-		<link rel="stylesheet" href="{$basePath}/css/style.css">
+		<link rel="stylesheet" href="{$basePath}/css/style.css?v=1">
 		<script>
 			if ('serviceWorker' in navigator) {
 				navigator.serviceWorker.register('/sw.js', { scope: '/' })
