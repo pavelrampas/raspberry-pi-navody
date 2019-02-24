@@ -16,6 +16,7 @@ Allow from all
 
 	# custom rewrite
 	RewriteRule ^security.txt /.well-known/security.txt [L]
+	RewriteRule ^novinky/manifest.json /manifest.json [L,R=301]
 
 	# front controller
 	RewriteCond %{REQUEST_FILENAME} !-f
