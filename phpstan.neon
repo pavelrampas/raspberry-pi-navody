@@ -7,6 +7,3 @@ parameters:
 		- '#Access to an undefined property Nette\\Application\\UI\\ITemplate::.*#'
 	autoload_directories:
 		- app
-	includes:
-		- vendor/phpstan/phpstan-nette/extension.neon
-		- vendor/phpstan/phpstan-nette/rules.neon
