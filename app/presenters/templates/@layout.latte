@@ -94,17 +94,6 @@
 			</div>
 		</div>
 		<link rel="stylesheet" href="{$basePath}/css/style.css?v=1">
-		<script>
-			if ('serviceWorker' in navigator) {
-				navigator.serviceWorker.register('/sw.js', { scope: '/' })
-					.then(function(registration) {
-						console.log('Service Worker Registered');
-					});
-				navigator.serviceWorker.ready
-					.then(function(registration) {
-						console.log('Service Worker Ready');
-					});
-			}
-		</script>
+		<script src="script.js?v=1"></script>
 	</body>
 </html>
