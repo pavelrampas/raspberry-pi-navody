@@ -18,15 +18,16 @@
 		"twbs/bootstrap": "^3.3.7"
 	},
 	"scripts": {
-        "less": [
-            "node_modules/less/bin/lessc less/import.less --autoprefix --clean-css > www/css/style.css"
-        ],
+		"less": [
+			"node_modules/less/bin/lessc less/import.less > www/css/style.css",
+			"node_modules/clean-css-cli/bin/cleancss -o www/css/style.css www/css/style.css"
+		],
 		"test": [
 			"vendor/bin/phpstan --ansi analyse -l 5 -c phpstan.neon app",
 			"php vendor/nette/code-checker/code-checker -d app --short-arrays",
 			"vendor/bin/ecs --ansi check app --config vendor/nette/coding-standard/coding-standard-php71.yml"
 		]
-    },
+	},
 	"require-dev": {
 		"phpstan/phpstan": "^0.12",
 		"phpstan/phpstan-nette": "^0.12",
