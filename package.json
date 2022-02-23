@@ -5,8 +5,8 @@
   "test": "echo \"Error: no test specified\" && exit 1"
  },
  "devDependencies": {
-  "clean-css": "^4.2.3",
+  "clean-css": "^4.2.4",
   "clean-css-cli": "^4.3.0",
-  "less": "^3.11.1"
+  "less": "^3.13.1"
  }
 }
